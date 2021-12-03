@@ -1,0 +1,13 @@
+.main-content{
+    width: 15%;
+    margin: auto;
+    border-radius: 0.5rem;
+    text-align: center;
+    border-width: 0.2rem;
+    background-color: white;
+}
+image{
+    margin: auto;
+    width: 7%;
+    border-radius:0.5rem;
+}
