@@ -6,16 +6,18 @@ import "./ItemList.css";
 const ItemList = (props) => {
   return (
     <fieldset className="main-list">
-      {DUMMY_DATA.map((item) => {
+      <h1 style={{color: "white"}}>Phones</h1>
+      <hr/>
+      <ul>{DUMMY_DATA.map((item) => {
         return (
-          <Item
+          <li><Item
             image={item.image}
             name={item.name}
             price={item.price}
             rating={item.rating}
-          />
+          /></li>
         );
-      })}
+      })}</ul>
     </fieldset>
   );
 };

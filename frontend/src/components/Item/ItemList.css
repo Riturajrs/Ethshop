@@ -1,4 +1,16 @@
-.main-list{
-    background-color: grey;
-    margin: auto;
+.main-list {
+  background-color: grey;
+  margin: auto;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+li{
+    padding-left: 1rem;
+    float: left;
+    width: 10%;
 }

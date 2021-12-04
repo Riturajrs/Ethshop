@@ -4,7 +4,8 @@ import "./item.css"
 const Item = (props) =>{
 
     return <div className="main-content">
-        <img height="50" src={props.image} alt={props.name}/><br/>
+        <img height="75" src={props.image} alt={props.name}/><br/>
+        <hr style={{width:"5rem"}}/>
         {props.name}<br/>
         ${props.price}<br/>
         Stars: {props.rating}
