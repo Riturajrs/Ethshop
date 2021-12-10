@@ -7,23 +7,26 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const Items = (props) => {
   return (
-    <Fade in={true}>
-    <div>
-      <ul>
-        {DUMMY_DATA.map((item) => {
-          return (
-            <Item
-              key={item.id}
-              image={item.img}
-              name={item.name}
-              lprice={item.lprice}
-              hprice={item.hprice}
-            />
-          );
-        })}
-      </ul>
-    </div>
-    </Fade>
+    <React.Fragment>
+      <Fade in={true}>
+        <div>
+          <ul>
+            {DUMMY_DATA.map((item) => {
+              return (
+                <Item
+                  key={item.id}
+                  id={item.id}
+                  image={item.img}
+                  name={item.name}
+                  lprice={item.lprice}
+                  hprice={item.hprice}
+                />
+              );
+            })}
+          </ul>
+        </div>
+      </Fade>
+    </React.Fragment>
   );
 };
 
