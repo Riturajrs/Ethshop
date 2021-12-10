@@ -1,14 +1,17 @@
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
-import react from "react";
-import { Router, Switch, Route, Redirect } from "react-router-dom";
-import ItemList from "./components/Item/ItemList";
+import RenderItems from './renderItems';
 
-const App = (props) => {
-  return <div>
-    <ItemList/>
-  </div>;
-};
+function App() {
+  if(window.ethereum){
+    console.log(true);
+  }
+  else{
+    console.log(false);
+  }
+  return <React.Fragment>
+    <RenderItems />
+  </React.Fragment>;
+}
 
 export default App;
-// https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/IPhone_1st_Gen.svg/800px-IPhone_1st_Gen.svg.png

@@ -1,0 +1,29 @@
+li {
+  list-style: none;
+  display: inline-block;
+  text-align: center;
+  align-items: center;
+  padding: 0.25rem;
+  padding-top: 1rem;
+  width: 20%;
+  margin: 1rem;
+  background-color: rgb(202, 202, 202);
+  border-radius: 5px;
+}
+img {
+  border-radius: 5px;
+  align-self: center;
+  max-width: 80%;
+}
+.Title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.button{
+    border-color: black;
+    margin: 10%;
+    background-color: orangered;
+    padding: 5%;
+    color: white;
+    border-radius: 5px;
+}

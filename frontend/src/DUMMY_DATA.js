@@ -1,0 +1,68 @@
+import img1 from "./img1.jpg";
+
+const DUMMY_DATA = [
+  {
+    id: 1,
+    creator: "u1",
+    img: img1,
+    name: "product",
+    desc: "Some description",
+    lprice: 200,
+    hprice: 500,
+  },
+  {
+    id: 2,
+    creator: "u1",
+    img: img1,
+    name: "product",
+    desc: "Some description",
+    lprice: 200,
+    hprice: 500,
+  },
+  {
+    id: 3,
+    creator: "u1",
+    img: img1,
+    name: "product",
+    desc: "Some description",
+    lprice: 200,
+    hprice: 500,
+  },
+  {
+    id: 4,
+    creator: "u1",
+    img: img1,
+    name: "product",
+    desc: "Some description",
+    lprice: 200,
+    hprice: 500,
+  },
+  {
+    id: 5,
+    creator: "u1",
+    img: img1,
+    name: "product",
+    desc: "Some description",
+    lprice: 200,
+    hprice: 500,
+  },
+  {
+    id: 6,
+    creator: "u1",
+    img: img1,
+    name: "product",
+    desc: "Some description",
+    lprice: 200,
+    hprice: 500,
+  },
+  {
+    id: 7,
+    creator: "u1",
+    img: img1,
+    name: "product",
+    desc: "Some description",
+    lprice: 200,
+    hprice: 500,
+  },
+];
+export default DUMMY_DATA;
