@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import RenderItems from './renderItems';
+import RenderItems from './Item/renderItems';
 
 function App() {
   if(window.ethereum){
