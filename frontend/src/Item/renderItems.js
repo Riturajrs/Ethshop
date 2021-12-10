@@ -2,9 +2,12 @@ import React from "react";
 import Item from "./Item";
 import DUMMY_DATA from "../DUMMY_DATA";
 import "./renderItem.css";
+import { Fade } from "reactstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Items = (props) => {
   return (
+    <Fade in={true}>
     <div>
       <ul>
         {DUMMY_DATA.map((item) => {
@@ -20,6 +23,7 @@ const Items = (props) => {
         })}
       </ul>
     </div>
+    </Fade>
   );
 };
 

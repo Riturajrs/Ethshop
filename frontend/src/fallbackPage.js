@@ -1,8 +1,11 @@
 import React from "react";
+import {Button, Fade} from "reactstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./fallbackPage.css";
 
 const fallback = (props) => {
   return (
+      <Fade in={true}>
     <div className="maintext">
       <div className="content">
         Seems your browser does not have a crypto wallet
@@ -11,11 +14,12 @@ const fallback = (props) => {
         browser
         <br />
         <hr />
-        <a href="https://metamask.io/" target="_blank">
-          <button>Download Metamask</button>
+        <a href="https://metamask.io/download.html" target="_blank">
+          <Button color="primary">Download Metamask</Button>
         </a>
       </div>
     </div>
+    </Fade>
   );
 };
 
