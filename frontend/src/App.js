@@ -1,17 +1,17 @@
 import React from "react";
 import "./App.css";
 import RenderItems from './Item/renderItems';
+import Fallback from "./fallbackPage";
 
 function App() {
   if(window.ethereum){
-    console.log(true);
+    return <React.Fragment>
+    <RenderItems />
+    </React.Fragment>;
   }
   else{
-    console.log(false);
+    return <Fallback/>;
   }
-  return <React.Fragment>
-    <RenderItems />
-  </React.Fragment>;
 }
 
 export default App;
