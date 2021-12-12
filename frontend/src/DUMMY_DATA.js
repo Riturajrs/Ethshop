@@ -2,7 +2,7 @@ import img1 from "./img1.jpg";
 
 const DUMMY_DATA = [
   {
-    id: "i1",
+    id: 1,
     creator: "u1",
     img: img1,
     name: "product",
@@ -11,7 +11,7 @@ const DUMMY_DATA = [
     hprice: 500,
   },
   {
-    id: "i2",
+    id: 2,
     creator: "u1",
     img: img1,
     name: "product",
@@ -20,7 +20,7 @@ const DUMMY_DATA = [
     hprice: 500,
   },
   {
-    id: "i3",
+    id: 3,
     creator: "u1",
     img: img1,
     name: "product",
@@ -29,7 +29,7 @@ const DUMMY_DATA = [
     hprice: 500,
   },
   {
-    id: "i4",
+    id: 4,
     creator: "u1",
     img: img1,
     name: "product",
@@ -38,7 +38,7 @@ const DUMMY_DATA = [
     hprice: 500,
   },
   {
-    id: "i5",
+    id: 5,
     creator: "u1",
     img: img1,
     name: "product",
@@ -47,7 +47,7 @@ const DUMMY_DATA = [
     hprice: 500,
   },
   {
-    id: "i6",
+    id: 6,
     creator: "u1",
     img: img1,
     name: "product",
@@ -56,7 +56,7 @@ const DUMMY_DATA = [
     hprice: 500,
   },
   {
-    id: "i7",
+    id: 7,
     creator: "u1",
     img: img1,
     name: "product",

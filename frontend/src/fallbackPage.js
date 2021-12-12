@@ -14,7 +14,7 @@ const fallback = (props) => {
         browser
         <br />
         <hr />
-        <a href="https://metamask.io/download.html" target="_blank" rel="noreferrer">
+        <a href="https://metamask.io/download.html" target="_blank">
           <Button color="primary">Download Metamask</Button>
         </a>
       </div>

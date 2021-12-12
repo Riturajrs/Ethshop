@@ -1,0 +1,117 @@
+.App {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(59, 15, 15);
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+button:hover{
+    cursor:pointer;
+}
+
+.Navbar{
+    background-color: rgb(133, 131, 122);
+    width: 100%;
+    height: 80px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.Navbar .leftSide {
+    flex: 30%;
+    display: flex;
+    font-size: 50px;
+    justify-content: left;
+    align-items: left;
+    margin-left: 15px;
+}
+
+.Navbar .middile {
+    flex: 40%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: left;
+    padding-left: 30px;
+}
+
+.middile input {
+    width: 520px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    padding-left: 15px;
+}
+
+.middile button {
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+}
+
+.Navbar .rightSide {
+    flex: 30%;
+    display: flex;
+    align-items: right;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+.Navbar .rightSide .links a{
+    font-size: 30px;
+    margin-left: 30px;
+    color:white;
+}
+
+.Navbar .rightSide button {
+    display: none;
+    margin-right: 15px;
+}
+
+.Navbar .rightSide #hidden {
+    display: flex;
+}
+
+@media only screen and (max-width: 800px){
+    .Navbar .leftSide{
+        font-size: 30px;
+    }
+    .Navbar .rightSide a{
+        font-size: 20px;
+    }
+    .middile input{
+        width: 220px;
+    }
+}
+
+@media only screen and (max-width: 650px){
+    .Navbar .leftSide{
+        font-size: 25px;
+    }
+    .Navbar .rightSide .links a{
+        font-size: 15px;
+        display: none;
+    }
+    .middile input{
+        width: 150px;
+    }
+    .Navbar .rightSide button {
+        display: flex;
+        margin-right: 15px;
+    }
+
+    .Navbar .rightSide #hidden {
+        position: absolute;
+        right: 0px;
+        top:80px;
+        max-height: 220px;
+        width: 100%;
+        background-color: rgb(59, 15, 15);
+        display: flex;
+        flex-direction: column;
+    }
+}
