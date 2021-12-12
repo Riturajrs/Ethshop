@@ -1,29 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Item from "./Item";
+import { useMoralis } from "react-moralis";
 import DUMMY_DATA from "../DUMMY_DATA";
 import "./renderItem.css";
 import { Fade } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Items = (props) => {
+  const { authenticate, isAuthenticated, user } = useMoralis();
+  useEffect(() => {
+    if (!isAuthenticated) {
+      authenticate();
+    }
+  }, [authenticate,isAuthenticated]);
+  console.log(user);
   return (
-    <Fade in={true}>
-    <div>
-      <ul>
-        {DUMMY_DATA.map((item) => {
-          return (
-            <Item
-              key={item.id}
-              image={item.img}
-              name={item.name}
-              lprice={item.lprice}
-              hprice={item.hprice}
-            />
-          );
-        })}
-      </ul>
-    </div>
-    </Fade>
+    <React.Fragment>
+      <Fade in={true}>
+        <div>
+          <ul>
+            {DUMMY_DATA.map((item) => {
+              return (
+                <Item
+                  key={item.id}
+                  id={item.id}
+                  image={item.img}
+                  name={item.name}
+                  lprice={item.lprice}
+                  hprice={item.hprice}
+                />
+              );
+            })}
+          </ul>
+        </div>
+      </Fade>
+    </React.Fragment>
   );
 };
 

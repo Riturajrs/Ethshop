@@ -1,19 +1,34 @@
 import React from "react";
 import "./App.css";
-import Navbar from './Navigation/navbar';
-import RenderItems from './Item/renderItems';
-import Fallback from "./fallbackPage";
+import Navbar from "./Navigation/navbar";
+import RenderItems from "./Item/renderItems";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
+import ItemPage from "./Item/itemPage";
 
 function App() {
-  if(window.ethereum){
-    return <React.Fragment>
+  return (
+    <React.Fragment>
       <Navbar />
-      <RenderItems />
-    </React.Fragment>;
-  }
-  else{
-    return <Fallback/>;
-  }
+      <Router>
+        <main>
+          <Switch>
+            <Route path="/" exact>
+              <RenderItems />
+            </Route>
+            <Route path="/:uid/item">
+              <ItemPage />
+            </Route>
+            <Redirect to="/" />
+          </Switch>
+        </main>
+      </Router>
+    </React.Fragment>
+  );
 }
 
 export default App;
