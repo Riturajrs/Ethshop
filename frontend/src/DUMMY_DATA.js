@@ -9,6 +9,8 @@ const DUMMY_DATA = [
     desc: "Some description",
     lprice: 200,
     hprice: 500,
+    ethAddress: "kjckjzdkcj",
+    wishlist: [],
   },
   {
     id: "i2",
@@ -18,6 +20,8 @@ const DUMMY_DATA = [
     desc: "Some description",
     lprice: 200,
     hprice: 500,
+    ethAddress: "kjckjzdkcj",
+    wishlist: [],
   },
   {
     id: "i3",
@@ -27,6 +31,8 @@ const DUMMY_DATA = [
     desc: "Some description",
     lprice: 200,
     hprice: 500,
+    ethAddress: "kjckjzdkcj",
+    wishlist: [],
   },
   {
     id: "i4",
@@ -36,6 +42,8 @@ const DUMMY_DATA = [
     desc: "Some description",
     lprice: 200,
     hprice: 500,
+    ethAddress: "kjckjzdkcj",
+    wishlist: [],
   },
   {
     id: "i5",
@@ -45,6 +53,8 @@ const DUMMY_DATA = [
     desc: "Some description",
     lprice: 200,
     hprice: 500,
+    ethAddress: "kjckjzdkcj",
+    wishlist: [],
   },
   {
     id: "i6",
@@ -54,6 +64,8 @@ const DUMMY_DATA = [
     desc: "Some description",
     lprice: 200,
     hprice: 500,
+    ethAddress: "kjckjzdkcj",
+    wishlist: [],
   },
   {
     id: "i7",
@@ -63,6 +75,8 @@ const DUMMY_DATA = [
     desc: "Some description",
     lprice: 200,
     hprice: 500,
+    ethAddress: "kjckjzdkcj",
+    wishlist: [],
   },
 ];
 export default DUMMY_DATA;

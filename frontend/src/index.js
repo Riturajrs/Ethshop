@@ -4,9 +4,8 @@ import "./index.css";
 import App from "./App";
 import { MoralisProvider } from "react-moralis";
 import reportWebVitals from "./reportWebVitals";
-import Fallback from "./fallbackPage";
 
-if (window.ethereum) {
+
   ReactDOM.render(
     <React.StrictMode>
       <MoralisProvider appId="BCQ5VuYNewPt64Su6kaiIQb9AaWx6INveywXm9DX" serverUrl="https://flek8gwue4ed.usemoralis.com:2053/server">
@@ -15,13 +14,5 @@ if (window.ethereum) {
     </React.StrictMode>,
     document.getElementById("root")
   );
-} else {
-  ReactDOM.render(
-    <React.StrictMode>
-      <Fallback />
-    </React.StrictMode>,
-    document.getElementById("root")
-  );
-}
 
 reportWebVitals();
