@@ -1,7 +1,6 @@
 .App {
     width: 100vw;
     height: 100vh;
-    background-color: rgb(59, 15, 15);
 }
 
 body{
@@ -29,6 +28,11 @@ button:hover{
     justify-content: left;
     align-items: left;
     margin-left: 15px;
+    text-decoration: none;
+}
+
+.Navbar .leftSide a {
+    color: white;
 }
 
 .Navbar .middile {
@@ -43,14 +47,14 @@ button:hover{
     width: 520px;
     height: 35px;
     border: none;
-    border-radius: 5px;
     padding-left: 15px;
 }
 
 .middile button {
+    background-color: white;
+    color: black;
     height: 35px;
     border: none;
-    border-radius: 5px;
 }
 
 .Navbar .rightSide {
@@ -76,6 +80,18 @@ button:hover{
     display: flex;
 }
 
+.Navbar .links button {
+    background-color: rgb(133, 131, 122);
+    margin-left: 30px;
+    display: inline-block;
+    text-align: center;
+    color: white;
+    border: rgb(41, 41, 1);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 @media only screen and (max-width: 800px){
     .Navbar .leftSide{
         font-size: 30px;
@@ -92,7 +108,7 @@ button:hover{
     .Navbar .leftSide{
         font-size: 25px;
     }
-    .Navbar .rightSide .links a{
+    .Navbar .rightSide .links a button{
         font-size: 15px;
         display: none;
     }
@@ -110,7 +126,7 @@ button:hover{
         top:80px;
         max-height: 220px;
         width: 100%;
-        background-color: rgb(59, 15, 15);
+        background-color: rgb(133, 131, 122);
         display: flex;
         flex-direction: column;
     }
