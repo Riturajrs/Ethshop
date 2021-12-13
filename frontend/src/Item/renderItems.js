@@ -1,19 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Item from "./Item";
-import { useMoralis } from "react-moralis";
 import DUMMY_DATA from "../DUMMY_DATA";
 import "./renderItem.css";
 import { Fade } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Items = (props) => {
-  const { authenticate, isAuthenticated, user } = useMoralis();
-  useEffect(() => {
-    if (!isAuthenticated) {
-      authenticate();
-    }
-  }, [authenticate,isAuthenticated]);
-  console.log(user);
   return (
     <React.Fragment>
       <Fade in={true}>
