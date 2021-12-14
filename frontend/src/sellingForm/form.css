@@ -1,0 +1,37 @@
+form {
+    max-width:500px;
+    margin: 2rem auto;
+    border: 2px solid black;
+    padding: 2rem;
+    font-family: sans-serif;
+    
+}
+
+form label{
+    padding: 1rem 0 .25rem;
+    display: block;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+form input, textarea {
+    margin-left: auto;
+    display: block;
+    width:100%;
+    border: 2px solid rgb(36, 8, 8);
+    padding: .5rem;
+}
+
+#Btn{
+    font-weight: 800;
+    margin-top: 2rem;
+    background-color: white;
+    color: black;
+    text-transform: uppercase;
+}
+
+#Btn:hover{
+    background-color: blue;
+}

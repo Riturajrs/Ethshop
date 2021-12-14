@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import ReorderIcon from "@material-ui/icons/Reorder";
 import UserIcon from "@material-ui/icons/AccountCircle";
-import WalletIcon from "@material-ui/icons/AccountBalanceWallet";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import SellIcon from '@material-ui/icons/AddShoppingCart';
 import { Redirect } from "react-router-dom";
 import { useMoralis } from "react-moralis";
 import "../App.css";
@@ -64,13 +64,19 @@ function Navbar() {
               {isAuthenticated && (
                 <a href="/metamask">
                   {" "}
-                  <WalletIcon />{" "}
+                  <SellIcon />{" "}
                 </a>
               )}
               {isAuthenticated && (
                 <a href="/user">
                   {" "}
                   <UserIcon />{" "}
+                </a>
+              )}
+              {isAuthenticated && (
+                <a href="/sell">
+                  {" "}
+                  Sell Now{" "}
                 </a>
               )}
               {!isAuthenticated && (

@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Navbar from "./Navigation/navbar";
 import RenderItems from "./Item/renderItems";
+import Form from "./sellingForm/form";
 import {
   BrowserRouter as Router,
   Route,
@@ -26,6 +27,9 @@ function App() {
             </Route>
             <Route path="/fallback">
               <Fallback />
+            </Route>
+            <Route path="/sell">
+              <Form />
             </Route>
             <Redirect to="/" />
           </Switch>
