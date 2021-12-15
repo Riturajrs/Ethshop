@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
+  wishlist: [{ type: String, required: true}],
   items: [{ type: mongoose.Types.ObjectId, required: true, ref: "Item" }],
 });
 

@@ -10,4 +10,19 @@ router.post(
   [check("username").not().isEmpty()],
   UserController.getUserItems
 );
+router.post(
+  "/wishlist",
+  [check("username").not().isEmpty(), check("wishlistid").not().isEmpty()],
+  UserController.addwishlist
+);
+router.patch(
+  "/wishlist",
+  [check("username").not().isEmpty(), check("wishlistid").not().isEmpty()],
+  UserController.removewishlist
+);
+router.get(
+  "/wishlist",
+  [check("username").not().isEmpty()],
+  UserController.getwishlist
+);
 module.exports = router;
