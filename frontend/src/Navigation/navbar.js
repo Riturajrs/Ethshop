@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useCallback } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import ReorderIcon from "@material-ui/icons/Reorder";
 import UserIcon from "@material-ui/icons/AccountCircle";
@@ -7,6 +7,7 @@ import SellIcon from "@material-ui/icons/AddShoppingCart";
 import { Redirect } from "react-router-dom";
 import { useMoralis } from "react-moralis";
 import { WishContext } from "../context/wishlist";
+import { useHttpClient } from "../hooks/http-hook";
 import "../App.css";
 import "./navbar.css";
 
@@ -14,6 +15,7 @@ function Navbar() {
   const [showLinks, setShowLinks] = useState(true);
   const [winEth, setWinEth] = useState(true);
   const { wishlist } = useContext(WishContext);
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const wishitems = wishlist.length;
   console.log(wishlist);
   const {
@@ -32,12 +34,30 @@ function Navbar() {
     }
     authenticate();
   };
+
   const logoutHandler = (e) => {
     e.preventDefault();
     logout();
   };
+  const LoginDB = useCallback(async() => {
+    try {
+      const username = user.get("username");
+      const responseData = await sendRequest(
+        `http://localhost:5000/api/users/login`, //url
+        "POST", //method
+        JSON.stringify({ //body
+          username: username,
+        }),
+        {
+          "Content-Type": "application/json", //headers
+        }
+      );
+      console.log(responseData);
+    } catch (err) {}
+  },[])
   if (user) {
     console.log(user.get("ethAddress"));
+    LoginDB();
   }
   return (
     <React.Fragment>
