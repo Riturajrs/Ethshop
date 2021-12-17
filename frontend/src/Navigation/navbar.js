@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import ReorderIcon from "@material-ui/icons/Reorder";
 import UserIcon from "@material-ui/icons/AccountCircle";
@@ -6,12 +6,16 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import SellIcon from "@material-ui/icons/AddShoppingCart";
 import { Redirect } from "react-router-dom";
 import { useMoralis } from "react-moralis";
+import { WishContext } from "../context/wishlist";
 import "../App.css";
 import "./navbar.css";
 
 function Navbar() {
   const [showLinks, setShowLinks] = useState(true);
   const [winEth, setWinEth] = useState(true);
+  const { wishlist } = useContext(WishContext);
+  const wishitems = wishlist.length;
+  console.log(wishlist);
   const {
     authenticate,
     isAuthenticated,
@@ -58,7 +62,7 @@ function Navbar() {
             <div className="links" id={showLinks ? "hidden" : ""}>
               {isAuthenticated && (
                 <a href="/wishlist">
-                  <FavoriteIcon />
+                  <FavoriteIcon />{wishitems?wishitems:""}
                 </a>
               )}
               {isAuthenticated && (

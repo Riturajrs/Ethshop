@@ -9,18 +9,29 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
+import { WishListhook } from "./hooks/wishlist";
+import { WishContext } from "./context/wishlist";
 import Fallback from "./fallbackPage";
 import ItemPage from "./Item/itemPage";
 
 function App() {
+  const { wishlist, addwishlist, removewishlist } = WishListhook();
   return (
     <React.Fragment>
       <Router>
         <main>
-          <Navbar />
+          <WishContext.Provider
+            value={{ wishlist, addwishlist, removewishlist }}
+          >
+            <Navbar />
+          </WishContext.Provider>
           <Switch>
             <Route path="/" exact>
-              <RenderItems />
+              <WishContext.Provider
+                value={{ wishlist, addwishlist, removewishlist }}
+              >
+                <RenderItems />
+              </WishContext.Provider>
             </Route>
             <Route path="/:uid/item">
               <ItemPage />

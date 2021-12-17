@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import Heart from "react-heart";
 import { useMoralis } from "react-moralis";
 import { Redirect } from "react-router-dom";
@@ -6,9 +6,10 @@ import { WishContext } from "../context/wishlist";
 import "./Item.css";
 
 const Item = (props) => {
-  const [wishlist, setWishlist] = useState(false);
+  const [wishstate, setWishstate] = useState(false);
   const [winEth, setWinEth] = useState(true);
   const { isAuthenticated,authenticate } = useMoralis();
+  const { addwishlist, removewishlist,wishlist } = useContext(WishContext);
   const wishListHandler = () => {
     if (!window.ethereum) {
       setWinEth(false);
@@ -18,18 +19,22 @@ const Item = (props) => {
       authenticate();
       return;
     }
-    setWishlist((prev) => !prev);
+    if( !wishstate ){
+      addwishlist({id: props.id});
+    }
+    else{
+      removewishlist({id: props.id});
+    }
+    setWishstate((prev) => !prev);
   };
-
   return (
     <React.Fragment>
-      <WishContext.Provider>
       {!winEth && <Redirect to="/fallback"/>}
       <li>
         <img src={props.image} alt={props.name} />
         <Heart
           className="heart"
-          isActive={wishlist}
+          isActive={wishstate}
           onClick={wishListHandler}
         />
         <br />
@@ -40,7 +45,6 @@ const Item = (props) => {
           <div className="button">View</div>
         </a>
       </li>
-      </WishContext.Provider>
     </React.Fragment>
   );
 };
