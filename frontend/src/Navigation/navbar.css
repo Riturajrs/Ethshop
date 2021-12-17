@@ -7,11 +7,12 @@ body{
     margin: 0;
     padding: 0;
 }
-
 button:hover{
     cursor:pointer;
 }
-
+a{
+    text-decoration: none;
+}
 .Navbar{
     background-color: rgb(133, 131, 122);
     width: 100%;
@@ -22,7 +23,7 @@ button:hover{
 }
 
 .Navbar .leftSide {
-    flex: 30%;
+    flex: 50%;
     display: flex;
     font-size: 35px;
     justify-content: left;
@@ -35,32 +36,9 @@ button:hover{
     color: white;
 }
 
-.Navbar .middile {
-    flex: 40%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: left;
-    padding-left: 30px;
-}
-
-.middile input {
-    width: 520px;
-    height: 35px;
-    border: none;
-    padding-left: 15px;
-}
-
-.middile button {
-    background-color: white;
-    color: black;
-    height: 35px;
-    border: none;
-}
-
 .Navbar .rightSide {
-    flex: 30%;
+    flex: 50%;
     display: flex;
-    align-items: right;
     justify-content: flex-end;
     padding-right: 20px;
 }
@@ -73,14 +51,6 @@ button:hover{
     color:white;
 }
 
-.Navbar .rightSide button {
-    display: none;
-    margin-right: 15px;
-}
-
-.Navbar .rightSide #hidden {
-    display: flex;
-}
 
 .Navbar .links button {
     background-color: rgb(133, 131, 122);
@@ -94,42 +64,23 @@ button:hover{
     font-size: 20px;
 }
 
-@media only screen and (max-width: 800px){
-    .Navbar .leftSide{
-        font-size: 30px;
-    }
-    .Navbar .rightSide a{
-        font-size: 20px;
-    }
-    .middile input{
-        width: 220px;
-    }
-}
 
 @media only screen and (max-width: 650px){
     .Navbar .leftSide{
         font-size: 25px;
     }
-    .Navbar .rightSide .links a button{
+    .Navbar .rightSide .links{
         font-size: 15px;
-        display: none;
-    }
-    .middile input{
-        width: 150px;
-    }
-    .Navbar .rightSide button {
+        margin-left: 10px;
         display: flex;
-        margin-right: 15px;
     }
-
-    .Navbar .rightSide #hidden {
-        position: absolute;
-        right: 0px;
-        top:80px;
-        max-height: 220px;
-        width: 100%;
-        background-color: rgb(133, 131, 122);
-        display: flex;
-        flex-direction: column;
+    .Navbar .rightSide .links a{
+        margin-left:10px;
+        
+        font-size: 10px;
+    }
+    .Navbar .links button {
+        font-size: 15px;
+        margin-left: 10px;
     }
 }

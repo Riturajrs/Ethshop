@@ -74,24 +74,15 @@ function Navbar() {
         <div className="Navbar">
           <div className="leftSide">
             <div className="links">
-              <a href="/home">OLX</a>
+              <a href="/home">Broker_101</a>
             </div>
           </div>
-          <div className="middile">
-            <input type="text" placeholder="Search.." />
-            <button type="sumbmit">
-              <SearchIcon />
-            </button>
-          </div>
           <div className="rightSide">
-            <button onClick={() => setShowLinks(!showLinks)}>
-              <ReorderIcon />
-            </button>
-            <div className="links" id={showLinks ? "hidden" : ""}>
+            <div className="links">
               {isAuthenticated && (
-                <a href="/wishlist">
-                  <FavoriteIcon />
-                  {wishitems ? wishitems : ""}
+                <a href="/wishlist" className="wishlist">
+                  Wishlist
+                  {wishitems ? ": "+wishitems : ""}
                 </a>
               )}
               {isAuthenticated && (
