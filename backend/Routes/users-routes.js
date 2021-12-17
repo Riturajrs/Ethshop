@@ -6,6 +6,12 @@ const UserController = require("../controllers/user-controllers");
 const router = express.Router();
 
 router.post(
+  "/login",
+  [check("username").not().isEmpty()],
+  UserController.userLogin
+);
+
+router.post(
   "/userItem",
   [check("username").not().isEmpty()],
   UserController.getUserItems

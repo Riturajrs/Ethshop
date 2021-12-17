@@ -1,26 +1,29 @@
 import React, { useState } from "react";
 import Heart from "react-heart";
 import { useMoralis } from "react-moralis";
-import FallBack from "../fallbackPage";
 import { Redirect } from "react-router-dom";
+import { WishContext } from "../context/wishlist";
 import "./Item.css";
 
 const Item = (props) => {
   const [wishlist, setWishlist] = useState(false);
   const [winEth, setWinEth] = useState(true);
-  const { isAuthenticated } = useMoralis();
+  const { isAuthenticated,authenticate } = useMoralis();
   const wishListHandler = () => {
     if (!window.ethereum) {
-      console.log("no eth");
       setWinEth(false);
       return ;
     }
-    if (wishlist) {
+    if( !isAuthenticated ){
+      authenticate();
+      return;
     }
     setWishlist((prev) => !prev);
   };
+
   return (
     <React.Fragment>
+      <WishContext.Provider>
       {!winEth && <Redirect to="/fallback"/>}
       <li>
         <img src={props.image} alt={props.name} />
@@ -37,6 +40,7 @@ const Item = (props) => {
           <div className="button">View</div>
         </a>
       </li>
+      </WishContext.Provider>
     </React.Fragment>
   );
 };
