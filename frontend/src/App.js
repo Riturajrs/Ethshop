@@ -15,37 +15,31 @@ import Fallback from "./fallbackPage";
 import ItemPage from "./Item/itemPage";
 
 function App() {
-  const { wishlist, addwishlist, removewishlist } = WishListhook();
+  const { wishlist, addwishlist, removewishlist, getwishlist } = WishListhook();
   return (
     <React.Fragment>
-      <Router>
-        <main>
-          <WishContext.Provider
-            value={{ wishlist, addwishlist, removewishlist }}
-          >
+      <WishContext.Provider value={{ wishlist, addwishlist, removewishlist, getwishlist }}>
+        <Router>
+          <main>
             <Navbar />
-          </WishContext.Provider>
-          <Switch>
-            <Route path="/" exact>
-              <WishContext.Provider
-                value={{ wishlist, addwishlist, removewishlist }}
-              >
+            <Switch>
+              <Route path="/" exact>
                 <RenderItems />
-              </WishContext.Provider>
-            </Route>
-            <Route path="/:uid/item">
-              <ItemPage />
-            </Route>
-            <Route path="/fallback">
-              <Fallback />
-            </Route>
-            <Route path="/sell">
-              <Form />
-            </Route>
-            <Redirect to="/" />
-          </Switch>
-        </main>
-      </Router>
+              </Route>
+              <Route path="/:uid/item">
+                <ItemPage />
+              </Route>
+              <Route path="/fallback">
+                <Fallback />
+              </Route>
+              <Route path="/sell">
+                <Form />
+              </Route>
+              <Redirect to="/" />
+            </Switch>
+          </main>
+        </Router>
+      </WishContext.Provider>
     </React.Fragment>
   );
 }

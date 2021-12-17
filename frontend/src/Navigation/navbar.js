@@ -1,4 +1,4 @@
-import React, { useState, useContext, useCallback } from "react";
+import React, { useState, useContext, useCallback,useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import ReorderIcon from "@material-ui/icons/Reorder";
 import UserIcon from "@material-ui/icons/AccountCircle";
@@ -14,10 +14,10 @@ import "./navbar.css";
 function Navbar() {
   const [showLinks, setShowLinks] = useState(true);
   const [winEth, setWinEth] = useState(true);
-  const { wishlist } = useContext(WishContext);
+  const [userData, setuserData] = useState();
+  const { wishlist, getwishList } = useContext(WishContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const wishitems = wishlist.length;
-  console.log(wishlist);
   const {
     authenticate,
     isAuthenticated,
@@ -34,33 +34,39 @@ function Navbar() {
     }
     authenticate();
   };
-
+  
   const logoutHandler = (e) => {
     e.preventDefault();
     logout();
   };
-  const LoginDB = useCallback(async() => {
+  const LoginDB = async() => {
+    const username = user.get("username");
+    let responseData;
     try {
-      const username = user.get("username");
-      const responseData = await sendRequest(
-        `http://localhost:5000/api/users/login`, //url
-        "POST", //method
-        JSON.stringify({ //body
+      responseData = await sendRequest(
+        `http://localhost:5000/api/users/login`,
+        "POST",
+        JSON.stringify({
           username: username,
         }),
         {
-          "Content-Type": "application/json", //headers
+          "Content-Type": "application/json",
         }
-      );
-      console.log(responseData);
-    } catch (err) {}
-  },[])
-  if (user) {
-    console.log(user.get("ethAddress"));
-    LoginDB();
-  }
-  return (
-    <React.Fragment>
+        );
+      } catch (err) {
+        console.log(err);
+      }
+      setuserData(responseData);
+      getwishList(userData.wishlist);
+      console.log(userData);
+    }
+    useEffect(() => {
+      if(user){
+        LoginDB();
+      }
+    },[isAuthenticated])
+    return (
+      <React.Fragment>
       {!winEth && <Redirect to="/fallback" />}
       {winEth && (
         <div className="Navbar">
@@ -82,7 +88,8 @@ function Navbar() {
             <div className="links" id={showLinks ? "hidden" : ""}>
               {isAuthenticated && (
                 <a href="/wishlist">
-                  <FavoriteIcon />{wishitems?wishitems:""}
+                  <FavoriteIcon />
+                  {wishitems ? wishitems : ""}
                 </a>
               )}
               {isAuthenticated && (

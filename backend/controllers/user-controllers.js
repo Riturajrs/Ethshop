@@ -17,23 +17,25 @@ const userLogin = async (req, res, next) => {
     return next(new HttpError("User could not be fetched", 404));
   }
   if (existingUser) {
+    console.log(existingUser);
     res.status(200).json({
       username: username,
       wishlist: existingUser.wishlist,
       items: existingUser.items,
     });
   } else {
-    const newUser = new User({ username: username, wishlist: [], items: [] });
+    const createdUser = new User({ username: username});
     try {
-      await newUser.save();
+      await createdUser.save();
     } catch (err) {
+      console.error(err);
       const error = new HttpError(
         "Signing up failed, please try again later.",
         500
       );
       return next(error);
     }
-    res.status(201).json({ username: username, items: [], wishlist: [] });
+    res.status(201).json({ username: username});
   }
 };
 
@@ -145,8 +147,6 @@ const getwishlist = async (req, res, next) => {
     return next(new HttpError("User could not be fetched", 404));
   }
   res.status(200).json({
-    username: username,
-    items: existingUser.items,
     wishlist: existingUser.wishlist,
   });
 };

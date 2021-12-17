@@ -18,5 +18,11 @@ export const WishListhook = () => {
     },
     [wishlist]
   );
-  return { wishlist, addwishlist, removewishlist };
+  const getwishlist = useCallback(
+    (wishlist) => {
+      setWishlist(wishlist);
+    },
+    [wishlist]
+  );
+  return { wishlist, addwishlist, removewishlist, getwishlist };
 };

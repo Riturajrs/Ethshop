@@ -6,7 +6,7 @@ import { WishContext } from "../context/wishlist";
 import "./Item.css";
 
 const Item = (props) => {
-  const [wishstate, setWishstate] = useState(false);
+  const [wishstate, setWishstate] = useState(props.wishlist);
   const [winEth, setWinEth] = useState(true);
   const { isAuthenticated,authenticate } = useMoralis();
   const { addwishlist, removewishlist,wishlist } = useContext(WishContext);
