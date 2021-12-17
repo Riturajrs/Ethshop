@@ -4,4 +4,5 @@ export const WishContext = createContext({
   wishlist: [],
   addwishlist: () => {},
   removewishlist: () => {},
+  getwishlist: () => {}
 });

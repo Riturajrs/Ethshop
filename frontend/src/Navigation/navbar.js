@@ -1,4 +1,4 @@
-import React, { useState, useContext, useCallback,useEffect } from "react";
+import React, { useState, useContext, useCallback, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import ReorderIcon from "@material-ui/icons/Reorder";
 import UserIcon from "@material-ui/icons/AccountCircle";
@@ -15,7 +15,7 @@ function Navbar() {
   const [showLinks, setShowLinks] = useState(true);
   const [winEth, setWinEth] = useState(true);
   const [userData, setuserData] = useState();
-  const { wishlist, getwishList } = useContext(WishContext);
+  const { wishlist, getwishlist } = useContext(WishContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const wishitems = wishlist.length;
   const {
@@ -34,12 +34,12 @@ function Navbar() {
     }
     authenticate();
   };
-  
+
   const logoutHandler = (e) => {
     e.preventDefault();
     logout();
   };
-  const LoginDB = async() => {
+  const LoginDB = async () => {
     const username = user.get("username");
     let responseData;
     try {
@@ -52,21 +52,23 @@ function Navbar() {
         {
           "Content-Type": "application/json",
         }
-        );
-      } catch (err) {
-        console.log(err);
-      }
-      setuserData(responseData);
-      getwishList(userData.wishlist);
-      console.log(userData);
+      );
+    } catch (err) {
+      console.log(err);
     }
-    useEffect(() => {
-      if(user){
-        LoginDB();
-      }
-    },[isAuthenticated])
-    return (
-      <React.Fragment>
+    setuserData(responseData);
+    if (userData) {
+      getwishlist(userData.wishlist);
+    }
+    console.log(userData);
+  };
+  useEffect(() => {
+    if (user) {
+      LoginDB();
+    }
+  }, [isAuthenticated]);
+  return (
+    <React.Fragment>
       {!winEth && <Redirect to="/fallback" />}
       {winEth && (
         <div className="Navbar">
