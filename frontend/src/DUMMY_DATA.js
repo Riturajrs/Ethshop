@@ -6,7 +6,7 @@ const DUMMY_DATA = [
     creator: "u1",
     img: img1,
     name: "product",
-    desc: "Some description",
+    desc: "This is a Bowl. ",
     lprice: 200,
     hprice: 500,
     ethAddress: "kjckjzdkcj",

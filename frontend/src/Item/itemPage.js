@@ -6,13 +6,23 @@ import "./itemPage.css"
 const Page = (props) => {
   const uid = useParams().uid;
   const place = Data.find((item) => {
-    return item.id === uid});
+    return item.id === uid}); 
   return (
-    <div className="page">
-      <img src={place.img} alt={place.name} />
-      {place.name}
-      <br />
-      <fieldset className="desc"> Description:<br/>{place.desc}</fieldset>
+    <div className="details">
+      <div className="big-img">
+        <img src={place.img} alt={place.name} />
+        <hr />
+      </div>
+      <div className="box">
+        <div className="row">
+          <h2>{place.name}</h2>
+          <hr />
+          <span>{place.lprice}eth - {place.hprice}eth</span>
+        </div>
+        <p>{place.desc}</p>
+        <p>Seller : {place.creator} </p>
+        <button className="cart">Buy Now</button>
+      </div> 
     </div>
   );
 };
