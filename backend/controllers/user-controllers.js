@@ -56,7 +56,7 @@ const getUserItems = async (req, res, next) => {
   if (existingUser) {
     res.status(200).json({
       username: username,
-      items: existingUser.items,
+      // items: existingUser.items,
       wishlist: existingUser.wishlist,
     });
   } else {
@@ -97,7 +97,7 @@ const addwishlist = async (req, res, next) => {
   }
   res.status(201).json({
     username: username,
-    items: existingUser.items,
+    // items: existingUser.items,
     wishlist: existingUser.wishlist,
   });
 };
