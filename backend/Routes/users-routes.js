@@ -7,28 +7,44 @@ const router = express.Router();
 
 router.post(
   "/login",
-  [check("username").not().isEmpty()],
+  [
+    check("email").not().isEmpty(),
+    check("password").not().isEmpty()
+  ],
   UserController.userLogin
 );
 
 router.post(
+  '/signup',
+  [
+    check('name')
+      .not()
+      .isEmpty(),
+    check('email')
+      .isEmail(),
+    check('password').isLength({ min: 6 })
+  ],
+  UserController.userSignup
+);
+
+router.post(
   "/userItem",
-  [check("username").not().isEmpty()],
+  [check("email").not().isEmpty()],
   UserController.getUserItems
 );
 router.post(
   "/wishlist",
-  [check("username").not().isEmpty(), check("wishlistid").not().isEmpty()],
+  [check("email").not().isEmpty(), check("wishlistid").not().isEmpty()],
   UserController.addwishlist
 );
 router.patch(
   "/wishlist",
-  [check("username").not().isEmpty(), check("wishlistid").not().isEmpty()],
+  [check("email").not().isEmpty(), check("wishlistid").not().isEmpty()],
   UserController.removewishlist
 );
 router.get(
   "/wishlist",
-  [check("username").not().isEmpty()],
+  [check("email").not().isEmpty()],
   UserController.getwishlist
 );
 module.exports = router;
