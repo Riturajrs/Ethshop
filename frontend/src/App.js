@@ -11,8 +11,10 @@ import {
 } from "react-router-dom";
 import { WishListhook } from "./hooks/wishlist";
 import { WishContext } from "./context/wishlist";
-import Fallback from "./fallbackPage";
 import ItemPage from "./Item/itemPage";
+import Modal from "./Modal/Modal";
+import ErrorModal from "./Modal/ErrorModal";
+
 
 function App() {
   const { wishlist, addwishlist, removewishlist, getwishlist } = WishListhook();
@@ -28,9 +30,6 @@ function App() {
               </Route>
               <Route path="/:uid/item">
                 <ItemPage />
-              </Route>
-              <Route path="/fallback">
-                <Fallback />
               </Route>
               <Route path="/sell">
                 <Form />

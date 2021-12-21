@@ -1,11 +1,7 @@
 import React, { useState, useContext, useCallback, useEffect } from "react";
-import SearchIcon from "@material-ui/icons/Search";
-import ReorderIcon from "@material-ui/icons/Reorder";
 import UserIcon from "@material-ui/icons/AccountCircle";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 import SellIcon from "@material-ui/icons/AddShoppingCart";
 import { Redirect } from "react-router-dom";
-import { useMoralis } from "react-moralis";
 import { WishContext } from "../context/wishlist";
 import { useHttpClient } from "../hooks/http-hook";
 import "../App.css";
@@ -18,55 +14,14 @@ function Navbar() {
   const { wishlist, getwishlist } = useContext(WishContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const wishitems = wishlist.length;
-  const {
-    authenticate,
-    isAuthenticated,
-    user,
-    logout,
-    isAuthenticating,
-    isLoggingOut,
-  } = useMoralis();
   const loginHandler = (e) => {
     e.preventDefault();
-    if (!window.ethereum) {
-      setWinEth(false);
-      return;
-    }
-    authenticate();
   };
 
   const logoutHandler = (e) => {
     e.preventDefault();
-    logout();
   };
-  const LoginDB = async () => {
-    const username = user.get("username");
-    let responseData;
-    try {
-      responseData = await sendRequest(
-        `http://localhost:5000/api/users/login`,
-        "POST",
-        JSON.stringify({
-          username: username,
-        }),
-        {
-          "Content-Type": "application/json",
-        }
-      );
-    } catch (err) {
-      console.log(err);
-    }
-    setuserData(responseData);
-    if (userData) {
-      getwishlist(userData.wishlist);
-    }
-    console.log(userData);
-  };
-  useEffect(() => {
-    if (user) {
-      LoginDB();
-    }
-  }, [isAuthenticated]);
+  const isAuthenticated = true;
   return (
     <React.Fragment>
       {!winEth && <Redirect to="/fallback" />}
@@ -98,12 +53,12 @@ function Navbar() {
                 </a>
               )}
               {!isAuthenticated && (
-                <button disabled={isAuthenticating} onClick={loginHandler}>
+                <button onClick={loginHandler}>
                   Login
                 </button>
               )}
               {isAuthenticated && (
-                <button disabled={isLoggingOut} onClick={logoutHandler}>
+                <button onClick={logoutHandler}>
                   Logout
                 </button>
               )}

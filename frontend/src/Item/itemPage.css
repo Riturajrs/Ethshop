@@ -64,7 +64,9 @@
 @media (max-width:500px){
   .details{
     box-shadow: none;
-    margin: 50px auto;
+    margin: 50px auto; 
+
+    
   }
 }
 
