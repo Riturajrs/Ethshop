@@ -9,25 +9,40 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
+import { useAuth } from "./hooks/auth-hook";
 import { WishListhook } from "./hooks/wishlist";
 import { WishContext } from "./context/wishlist";
+import { AuthContext } from "./context/auth";
 import ItemPage from "./Item/itemPage";
-import Modal from "./Modal/Modal";
-import ErrorModal from "./Modal/ErrorModal";
-
 
 function App() {
+  const {isLoggedIn,login,logout} = useAuth();
   const { wishlist, addwishlist, removewishlist, getwishlist } = WishListhook();
   return (
     <React.Fragment>
-      <WishContext.Provider value={{ wishlist, addwishlist, removewishlist, getwishlist }}>
+      <AuthContext.Provider
+        value={{
+          isLoggedIn: isLoggedIn,
+          userId: userId,
+          login: login,
+          logout: logout,
+        }}
+      >
         <Router>
           <main>
-            <Navbar />
+            <WishContext.Provider
+              value={{ wishlist, addwishlist, removewishlist, getwishlist }}
+            >
+              <Navbar />
+            </WishContext.Provider>
             <Switch>
-              <Route path="/" exact>
-                <RenderItems />
-              </Route>
+              <WishContext.Provider
+                value={{ wishlist, addwishlist, removewishlist, getwishlist }}
+              >
+                <Route path="/" exact>
+                  <RenderItems />
+                </Route>
+              </WishContext.Provider>
               <Route path="/:uid/item">
                 <ItemPage />
               </Route>
@@ -38,7 +53,7 @@ function App() {
             </Switch>
           </main>
         </Router>
-      </WishContext.Provider>
+      </AuthContext.Provider>
     </React.Fragment>
   );
 }

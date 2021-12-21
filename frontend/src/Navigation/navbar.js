@@ -3,7 +3,6 @@ import UserIcon from "@material-ui/icons/AccountCircle";
 import SellIcon from "@material-ui/icons/AddShoppingCart";
 import { Redirect } from "react-router-dom";
 import { WishContext } from "../context/wishlist";
-import { useHttpClient } from "../hooks/http-hook";
 import "../App.css";
 import "./navbar.css";
 
@@ -12,7 +11,6 @@ function Navbar() {
   const [winEth, setWinEth] = useState(true);
   const [userData, setuserData] = useState();
   const { wishlist, getwishlist } = useContext(WishContext);
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const wishitems = wishlist.length;
   const loginHandler = (e) => {
     e.preventDefault();
