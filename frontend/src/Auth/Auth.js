@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 
-import Card from "./UIElements/Card";
-import Input from "./FormElements/Input";
-import Button from "./FormElements/Button";
+import Card from "./Card";
+import Input from "../FormElements/Input";
+import Button from "../FormElements/Button";
 import { VALIDATOR_REQUIRE,VALIDATOR_EMAIL,VALIDATOR_MINLENGTH } from "../validators";
 import { useForm } from "../hooks/form-hook";
 import { useHttpClient } from "../hooks/http-hook";
@@ -34,7 +34,6 @@ const Auth = () => {
         {
           ...formState.inputs,
           name: undefined,
-          //image: undefined,
         },
         formState.inputs.email.isValid && formState.inputs.password.isValid
       );
@@ -45,11 +44,7 @@ const Auth = () => {
           name: {
             value: "",
             isValid: false,
-          },
-          // image: {
-          //   value: null,
-          //   isValid: false,
-          // },
+          }
         },
         false
       );
