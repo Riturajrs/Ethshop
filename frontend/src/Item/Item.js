@@ -6,14 +6,8 @@ import "./Item.css";
 
 const Item = (props) => {
   const [wishstate, setWishstate] = useState(props.wishlist);
-  const [winEth, setWinEth] = useState(true);
   const { addwishlist, removewishlist,wishlist } = useContext(WishContext);
   const wishListHandler = () => {
-    if (!window.ethereum) {
-      setWinEth(false);
-      return ;
-    }
-    
     if( !wishstate ){
       addwishlist({id: props.id});
     }
@@ -24,7 +18,6 @@ const Item = (props) => {
   };
   return (
     <React.Fragment>
-      {!winEth && <Redirect to="/fallback"/>}
       <li>
         <img src={props.image} alt={props.name} />
         <Heart
