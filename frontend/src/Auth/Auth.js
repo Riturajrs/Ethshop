@@ -1,19 +1,12 @@
 import React, { useState, useContext } from "react";
 
-import Card from "F:/OLX/frontend/src/Auth/UIElements/Card";
-import Input from "../../shared/components/FormElements/Input";
-import Button from "../../shared/components/FormElements/Button";
-import ErrorModal from "F:/OLX/frontend/src/Auth/UIElements/ErrorModal";
-import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-//import ImageUpload from "../../shared/components/FormElements/ImageUpload";
-import {
-  VALIDATOR_EMAIL,
-  VALIDATOR_MINLENGTH,
-  VALIDATOR_REQUIRE,
-} from "../../shared/util/validators";
-import { useForm } from "../../shared/hooks/form-hook";
-import { useHttpClient } from "../../shared/hooks/http-hook";
-import { AuthContext } from "../../shared/context/auth-context";
+import Card from "./UIElements/Card";
+import Input from "./FormElements/Input";
+import Button from "./FormElements/Button";
+import { VALIDATOR_REQUIRE,VALIDATOR_EMAIL,VALIDATOR_MINLENGTH } from "../validators";
+import { useForm } from "../hooks/form-hook";
+import { useHttpClient } from "../hooks/http-hook";
+import { AuthContext } from "../context/auth";
 import "./Auth.css";
 
 const Auth = () => {
@@ -101,19 +94,10 @@ const Auth = () => {
 
   return (
     <React.Fragment>
-      <ErrorModal error={error} onClear={clearError} />
       <Card className="authentication">
-        {isLoading && <LoadingSpinner asOverlay />}
         <h3>Login to continue shopping</h3>
         <hr />
         <form onSubmit={authSubmitHandler}>
-          {/* {!isLoginMode && (
-            <ImageUpload
-              id="image"
-              onInput={inputHandler}
-              errorText="Please provide an image"
-            />
-          )} */}
           {!isLoginMode && (
             <Input
               element="input"

@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Navbar from "./Navigation/navbar";
 import RenderItems from "./Item/renderItems";
+import Auth from "./Auth/Auth"
 import Form from "./sellingForm/form";
 import {
   BrowserRouter as Router,
@@ -43,6 +44,9 @@ function App() {
                 </Route>
                 <Route path="/sell">
                   <Form />
+                </Route>
+                <Route path="/auth">
+                  <Auth/>
                 </Route>
                 <Redirect to="/" />
               </Switch>

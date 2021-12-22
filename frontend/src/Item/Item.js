@@ -29,8 +29,10 @@ const Item = (props) => {
         <div className="Title">{props.name}</div>
         {props.lprice} eth - {props.hprice} eth
         <br />
-        <a href={`${props.id}/item`}>
-          <div className="button">View</div>
+        <a href={`${props.id}/item`} style={{"text-decoration":"none"}}>
+          <div className="button" >
+            View
+            </div>
         </a>
       </li>
     </React.Fragment>

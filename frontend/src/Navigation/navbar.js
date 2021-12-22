@@ -1,14 +1,13 @@
 import React, { useState, useContext, useCallback, useEffect } from "react";
 import UserIcon from "@material-ui/icons/AccountCircle";
 import SellIcon from "@material-ui/icons/AddShoppingCart";
-import { Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { WishContext } from "../context/wishlist";
 import "../App.css";
 import "./navbar.css";
 
 function Navbar() {
   const [showLinks, setShowLinks] = useState(true);
-  const [winEth, setWinEth] = useState(true);
   const [userData, setuserData] = useState();
   const { wishlist, getwishlist } = useContext(WishContext);
   const wishitems = wishlist.length;
@@ -19,51 +18,48 @@ function Navbar() {
   const logoutHandler = (e) => {
     e.preventDefault();
   };
-  const isAuthenticated = true;
+  const isAuthenticated = false;
   return (
     <React.Fragment>
-      {!winEth && <Redirect to="/fallback" />}
-      {winEth && (
-        <div className="Navbar">
-          <div className="leftSide">
-            <div className="links">
-              <a href="/home">Broker_101</a>
-            </div>
+      <div className="Navbar">
+        <div className="leftSide">
+          <div className="links">
+            <a href="/">
+              <button><h1>Broker_101</h1></button>
+            </a>
           </div>
-          <div className="rightSide">
-            <div className="links">
-              {isAuthenticated && (
-                <a href="/wishlist" className="wishlist">
+        </div>
+        <div className="rightSide">
+          <div className="links">
+            {isAuthenticated && (
+              <a href="/wishlist" className="wishlist">
+                <button>
                   Wishlist
-                  {wishitems ? ": "+wishitems : ""}
-                </a>
-              )}
-              {isAuthenticated && (
+                  {wishitems ? ": " + wishitems : ""}
+                </button>
+              </a>
+            )}
+            {isAuthenticated && (
+              <button>
                 <a href="/sellitem">
                   {" "}
                   <SellIcon />{" "}
                 </a>
-              )}
-              {isAuthenticated && (
+              </button>
+            )}
+            {isAuthenticated && (
+              <button>
                 <a href="/user">
                   {" "}
                   <UserIcon />{" "}
                 </a>
-              )}
-              {!isAuthenticated && (
-                <button onClick={loginHandler}>
-                  Login
-                </button>
-              )}
-              {isAuthenticated && (
-                <button onClick={logoutHandler}>
-                  Logout
-                </button>
-              )}
-            </div>
+              </button>
+            )}
+            {!isAuthenticated && <button onClick={loginHandler}>Login</button>}
+            {isAuthenticated && <button onClick={logoutHandler}>Logout</button>}
           </div>
         </div>
-      )}
+      </div>
     </React.Fragment>
   );
 }
