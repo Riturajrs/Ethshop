@@ -1,20 +1,19 @@
-.authentication__header {
-  color:rgb(255, 255, 255);
-  text-align: left;
-}
 
 .authentication {
   width: 90%;
-  max-width: 25rem;
+  max-width: 30rem;
   margin: 7rem auto;
   text-align: center; 
-  background-color: rgb(233, 231, 231);
-  border-style: double;
+  background-color: rgb(241, 241, 241);
   border-radius: 5%;
 }
 
+label{
+  margin-left:2rem;
+}
 .authentication form {
-  margin-bottom: 1rem;
+  border-style: none;
+  margin-top: 0.1rem;
 }
 
 #name {

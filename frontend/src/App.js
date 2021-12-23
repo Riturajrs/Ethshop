@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Navbar from "./Navigation/navbar";
 import RenderItems from "./Item/renderItems";
-import Auth from "./Auth/Auth"
+import Auth from "./Auth/user/pages/Auth";
 import Form from "./sellingForm/form";
 import {
   BrowserRouter as Router,

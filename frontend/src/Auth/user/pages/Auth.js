@@ -1,18 +1,23 @@
 import React, { useState, useContext } from "react";
 
 import Card from "./Card";
-import Input from "../FormElements/Input";
-import Button from "../FormElements/Button";
-import { VALIDATOR_REQUIRE,VALIDATOR_EMAIL,VALIDATOR_MINLENGTH } from "../validators";
-import { useForm } from "../hooks/form-hook";
-import { useHttpClient } from "../hooks/http-hook";
-import { AuthContext } from "../context/auth";
+import Input from "../../../FormElements/Input";
+import Button from "../../../FormElements/Button";
+
+import {
+  VALIDATOR_EMAIL,
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_REQUIRE,
+} from "../validators";
+import { useForm } from "../../../hooks/form-hook";
+import { useHttpClient } from "../../../hooks/http-hook";
+import { AuthContext } from "../../../context/auth";
 import "./Auth.css";
 
 const Auth = () => {
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const { sendRequest} = useHttpClient();
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -44,7 +49,7 @@ const Auth = () => {
           name: {
             value: "",
             isValid: false,
-          }
+          },
         },
         false
       );
@@ -64,7 +69,7 @@ const Auth = () => {
             password: formState.inputs.password.value,
           }),
           {
-            "Content-Type": "application/json", //headers
+            "Content-Type": "application/json", //headers 
           }
         );
         auth.login(responseData.userId, responseData.token);
@@ -90,7 +95,7 @@ const Auth = () => {
   return (
     <React.Fragment>
       <Card className="authentication">
-        <h3>Login to continue shopping</h3>
+        <h3 style={{"margin-top":"1rem"}}>Login to continue shopping</h3>
         <hr />
         <form onSubmit={authSubmitHandler}>
           {!isLoginMode && (
@@ -125,13 +130,13 @@ const Auth = () => {
             errorText="Please enter a valid password, at least 6 characters."
             onInput={inputHandler}
           />
-          <Button type="submit" disabled={!formState.isValid}>
+          <Button style={{"margin-right":"5rem"}} type="submit" disabled={!formState.isValid}>
             {isLoginMode ? "LOG IN" : "SIGN UP"}
           </Button>
-        </form>
-        <Button inverse onClick={switchModeHandler}>
+          <Button inverse onClick={switchModeHandler}>
            {isLoginMode ? "Don't have an account yet" : "Already have an account"} 
         </Button>
+        </form>
       </Card>
     </React.Fragment>
   );
