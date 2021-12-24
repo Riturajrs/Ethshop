@@ -1,7 +1,7 @@
 import React, { useState, useContext, useCallback, useEffect } from "react";
 import UserIcon from "@material-ui/icons/AccountCircle";
 import SellIcon from "@material-ui/icons/AddShoppingCart";
-import { NavLink } from "react-router-dom";
+import { AuthContext } from "../context/auth";
 import { WishContext } from "../context/wishlist";
 import "../App.css";
 import "./navbar.css";
@@ -10,15 +10,12 @@ function Navbar() {
   const [showLinks, setShowLinks] = useState(true);
   const [userData, setuserData] = useState();
   const { wishlist, getwishlist } = useContext(WishContext);
+  const { isLoggedIn,logout } = useContext(AuthContext);
   const wishitems = wishlist.length;
-  const loginHandler = (e) => {
-    e.preventDefault();
-  };
-
   const logoutHandler = (e) => {
     e.preventDefault();
+    logout();
   };
-  const isAuthenticated = false;
   return (
     <React.Fragment>
       <div className="Navbar">
@@ -31,7 +28,7 @@ function Navbar() {
         </div>
         <div className="rightSide">
           <div className="links">
-            {isAuthenticated && (
+            {isLoggedIn && (
               <a href="/wishlist" className="wishlist">
                 <button>
                   Wishlist
@@ -39,7 +36,7 @@ function Navbar() {
                 </button>
               </a>
             )}
-            {isAuthenticated && (
+            {isLoggedIn && (
               <button>
                 <a href="/sellitem">
                   {" "}
@@ -47,7 +44,7 @@ function Navbar() {
                 </a>
               </button>
             )}
-            {isAuthenticated && (
+            {isLoggedIn && (
               <button>
                 <a href="/user">
                   {" "}
@@ -55,8 +52,8 @@ function Navbar() {
                 </a>
               </button>
             )}
-            {!isAuthenticated && <button onClick={loginHandler}>Login</button>}
-            {isAuthenticated && <button onClick={logoutHandler}>Logout</button>}
+            {!isLoggedIn && <button><a href="/auth" style={{"textDecoration":"none"}}>Login</a></button>}
+            {isLoggedIn && <button onClick={logoutHandler}>Logout</button>}
           </div>
         </div>
       </div>

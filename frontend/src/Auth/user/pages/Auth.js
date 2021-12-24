@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import Card from "./Card";
 import Input from "../../../FormElements/Input";
 import Button from "../../../FormElements/Button";
-
+import {useHistory} from "react-router-dom";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
@@ -17,7 +17,8 @@ import "./Auth.css";
 const Auth = () => {
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
-  const { sendRequest} = useHttpClient();
+  const history = useHistory();
+  const { sendRequest,error } = useHttpClient();
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -62,7 +63,7 @@ const Auth = () => {
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/users/login`, //url
+          `http://localhost:5000/api/users/login`, //url
           "POST", //method
           JSON.stringify({ //body
             email: formState.inputs.email.value,
@@ -72,24 +73,27 @@ const Auth = () => {
             "Content-Type": "application/json", //headers 
           }
         );
-        auth.login(responseData.userId, responseData.token);
+        auth.login(responseData.userId);
       } catch (err) {}
     } else {
       try {
-        const formData = new FormData();
-        formData.append("name", formState.inputs.name.value);
-        formData.append("email", formState.inputs.email.value);
-        formData.append("password", formState.inputs.password.value);
-        formData.append("image", formState.inputs.image.value);
         const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
+          `http://localhost:5000/api/users/signup`,
           "POST",
-          formData
+          JSON.stringify({ 
+            name: formState.inputs.name.value,
+            email: formState.inputs.email.value,
+            password: formState.inputs.password.value,
+          }),
+          {
+            "Content-Type": "application/json", //headers 
+          }
         );
 
-        auth.login(responseData.userId, responseData.token);
+        auth.login(responseData.userId);
       } catch (err) {}
     }
+    history.push("/");
   };
 
   return (
