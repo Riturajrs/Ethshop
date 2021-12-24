@@ -3,6 +3,7 @@ import UserIcon from "@material-ui/icons/AccountCircle";
 import SellIcon from "@material-ui/icons/AddShoppingCart";
 import { AuthContext } from "../context/auth";
 import { WishContext } from "../context/wishlist";
+import { Link } from "react-router-dom";
 import "../App.css";
 import "./navbar.css";
 
@@ -21,38 +22,32 @@ function Navbar() {
       <div className="Navbar">
         <div className="leftSide">
           <div className="links">
-            <a href="/">
-              <button><h1>Broker_101</h1></button>
-            </a>
+            <Link to="/" style={{"textDecoration":"none"}}>
+              <h1>Broker_101</h1>
+            </Link>
           </div>
         </div>
         <div className="rightSide">
           <div className="links">
             {isLoggedIn && (
-              <a href="/wishlist" className="wishlist">
-                <button>
+              <Link to="/wishlist" className="wishlist" style={{"textDecoration":"none"}}>
                   Wishlist
                   {wishitems ? ": " + wishitems : ""}
-                </button>
-              </a>
+              </Link>
             )}
             {isLoggedIn && (
-              <button>
-                <a href="/sellitem">
+                <Link to="/sellitem" style={{"textDecoration":"none"}}>
                   {" "}
                   <SellIcon />{" "}
-                </a>
-              </button>
+                </Link>
             )}
             {isLoggedIn && (
-              <button>
-                <a href="/user">
+                <Link to="/user" style={{"textDecoration":"none"}}>
                   {" "}
                   <UserIcon />{" "}
-                </a>
-              </button>
+                </Link>
             )}
-            {!isLoggedIn && <button><a href="/auth" style={{"textDecoration":"none"}}>Login</a></button>}
+            {!isLoggedIn && <Link to="/auth" style={{"textDecoration":"none"}}>Login</Link>}
             {isLoggedIn && <button onClick={logoutHandler}>Logout</button>}
           </div>
         </div>

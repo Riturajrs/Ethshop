@@ -1,7 +1,8 @@
 import React, { useState,useContext } from "react";
 import Heart from "react-heart";
-import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { WishContext } from "../context/wishlist";
+import Button from "../FormElements/Button";
 import "./Item.css";
 
 const Item = (props) => {
@@ -29,11 +30,11 @@ const Item = (props) => {
         <div className="Title">{props.name}</div>
         {props.lprice} eth - {props.hprice} eth
         <br />
-        <a href={`${props.id}/item`} style={{"text-decoration":"none"}}>
-          <div className="button" >
+        <Link to={`${props.id}/item`} style={{"text-decoration":"none"}}>
+          <Button>
             View
-            </div>
-        </a>
+          </Button>
+        </Link>
       </li>
     </React.Fragment>
   );

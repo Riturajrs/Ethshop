@@ -29,9 +29,9 @@ function App() {
           logout: logout,
         }}
       >
-        <WishContext.Provider
+        {/* <WishContext.Provider
           value={{ wishlist, addwishlist, removewishlist, getwishlist }}
-        >
+        > */}
           <Router>
             <main>
               <Navbar />
@@ -52,7 +52,7 @@ function App() {
               </Switch>
             </main>
           </Router>
-        </WishContext.Provider>
+        {/* </WishContext.Provider> */}
       </AuthContext.Provider>
     </React.Fragment>
   );

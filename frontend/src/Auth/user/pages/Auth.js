@@ -93,7 +93,7 @@ const Auth = () => {
         auth.login(responseData.userId);
       } catch (err) {}
     }
-    history.push("/");
+    // history.push("/");
   };
 
   return (

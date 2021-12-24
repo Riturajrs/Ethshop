@@ -27,8 +27,8 @@ a{
 .button{
     border-color: black;
     margin: 10%;
-    background-color: orangered;
-    padding: 5%;
+    background-color: #ff0055;
+    padding: 0.5rem 1.5rem;
     color: white;
     border-radius: 5px;
     text-decoration:none;
