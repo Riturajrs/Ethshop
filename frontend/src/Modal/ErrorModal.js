@@ -1,17 +1,20 @@
-import React from 'react';
+import React from "react";
+import Button from '../FormElements/Button'
+import Modal from 'react-bootstrap/Modal'
 
-import Modal from './Modal';
-
-const ErrorModal = props => {
+const ErrorModal = (props) => {
   return (
-    <Modal
-      onCancel={props.onClear}
-      header="An Error Occurred!"
-      show={!!props.error}
-      footer={<button onClick={props.onClear}>Okay</button>}
-    >
-      <p>{props.error}</p>
-    </Modal>
+    <Modal show={!!props.error} onHide={props.onClear}>
+        <Modal.Header closeButton>
+          <Modal.Title>An error occurred!!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{props.error}</Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onClear}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
   );
 };
 

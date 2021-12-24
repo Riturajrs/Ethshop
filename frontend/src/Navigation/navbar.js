@@ -4,11 +4,12 @@ import SellIcon from "@material-ui/icons/AddShoppingCart";
 import { AuthContext } from "../context/auth";
 import { WishContext } from "../context/wishlist";
 import { Link } from "react-router-dom";
+import Auth from "../Auth/user/pages/Auth";
 import "../App.css";
 import "./navbar.css";
 
 function Navbar() {
-  const [showLinks, setShowLinks] = useState(true);
+  const [showLogin, setShowLogin] = useState(false);
   const [userData, setuserData] = useState();
   const { wishlist, getwishlist } = useContext(WishContext);
   const { isLoggedIn,logout } = useContext(AuthContext);
@@ -17,8 +18,13 @@ function Navbar() {
     e.preventDefault();
     logout();
   };
+  const loginHandler = (e) => {
+    e.preventDefault();
+    setShowLogin(true);
+  };
   return (
     <React.Fragment>
+      {showLogin && <Auth show={showLogin} onClear={() => setShowLogin(false)}/>}
       <div className="Navbar">
         <div className="leftSide">
           <div className="links">
@@ -47,7 +53,7 @@ function Navbar() {
                   <UserIcon />{" "}
                 </Link>
             )}
-            {!isLoggedIn && <Link to="/auth" style={{"textDecoration":"none"}}>Login</Link>}
+            {!isLoggedIn && <button onClick={loginHandler}>Login</button>}
             {isLoggedIn && <button onClick={logoutHandler}>Logout</button>}
           </div>
         </div>

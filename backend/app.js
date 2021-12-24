@@ -27,6 +27,10 @@ app.use((req, res, next) => {
   const error = new HttpError("Could not find this route.", 404);
   throw error;
 });
+app.use((error, req, res, next) => {
+  res.status(error.code || 500);
+  res.json({ message: error.message || "An unknown error occurred!" });
+});
 mongoose
   .connect(
     `mongodb+srv://MegaProjectUser:8Qy7ueuhWLTh5fZG@cluster0.ccgat.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`

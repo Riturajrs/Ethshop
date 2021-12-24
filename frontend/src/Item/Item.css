@@ -15,30 +15,80 @@ img {
   border-radius: 5px;
   align-self: center;
   max-width: 80%;
-  z-index:1;
+  z-index: 1;
 }
 .Title {
   font-size: 1.5rem;
   font-weight: bold;
 }
-a{
+a {
   text-decoration: none;
 }
-.button{
-    border-color: black;
-    margin: 10%;
-    background-color: #ff0055;
-    padding: 0.5rem 1.5rem;
-    color: white;
-    border-radius: 5px;
-    text-decoration:none;
+.button {
+  font: inherit;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #ff0055;
+  border-radius: 4px;
+  background: #ff0055;
+  color: white;
+  cursor: pointer;
+  /* margin-right: 1rem; */
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 0.1rem;
 }
-.heart{
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover,
+.button:active {
+  background: #ff4382;
+  border-color: #ff4382;
+}
+
+.button--inverse {
+  background: transparent;
+  color: #ff0055;
+}
+
+.button--inverse:hover,
+.button--inverse:active {
+  color: white;
+  background: #ff0055;
+}
+
+.button--danger {
+  background: #830000;
+  border-color: #830000;
+}
+
+.button--danger:hover,
+.button--danger:active {
+  background: #f34343;
+  border-color: #f34343;
+}
+
+.button:disabled,
+.button:hover:disabled,
+.button:active:disabled {
+  background: #ccc;
+  color: #979797;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+.button--small {
+  font-size: 0.8rem;
+}
+
+.button--big {
+  font-size: 1.5rem;
+}
+.heart {
   margin-bottom: 40%;
   margin-left: -15%;
   z-index: 2;
   width: 8%;
-}
-#button{
-  text-decoration:none;
 }
