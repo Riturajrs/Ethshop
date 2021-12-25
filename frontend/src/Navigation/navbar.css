@@ -64,6 +64,19 @@ a{
     font-size: 20px;
 }
 
+#login {
+    background-color: rgb(133, 131, 122);
+    font-weight: 600;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+}
+
+#dropdown {
+    background-color: rgb(133, 131, 122);
+    border-color: 2px solid rgb(247, 10, 148);
+}
+
 
 @media only screen and (max-width: 650px){
     .Navbar .leftSide{

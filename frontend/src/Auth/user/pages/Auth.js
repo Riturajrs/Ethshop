@@ -4,7 +4,7 @@ import Card from "./Card";
 import Input from "../../../FormElements/Input";
 import Spinner from "react-bootstrap/Spinner";
 import Button from "../../../FormElements/Button";
-import Backdrop from "../../../BackDrop/backdrop";
+
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
@@ -76,6 +76,7 @@ const Auth = (props) => {
           }
         );
         auth.login(responseData.userId);
+        props.onClear();
       } catch (err) {}
     } else {
       try {
@@ -93,6 +94,7 @@ const Auth = (props) => {
         );
 
         auth.login(responseData.userId);
+        props.onClear();
       } catch (err) {}
     }
   };
