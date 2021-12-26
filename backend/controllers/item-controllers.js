@@ -88,7 +88,19 @@ const createItem = async (req, res, next) => {
 
   res.status(201).json({ item: createdItem.toObject({ getters: true }) });
 };
-
+const getItems = async (req,res) => {
+  let items;
+  try {
+    items = await Item.find({});
+  } catch (err) {
+    const error = new HttpError(
+      "Fetching items failed, please try again later.",
+      500
+    );
+    return next(error);
+  }
+  res.json({ items: items.map((item) => item.toObject({ getters: true })) });
+}
 const getImage = (req, res) => {
   console.log(req.params.filename);
   gfs
@@ -115,3 +127,4 @@ const deleteImage = (req, res) => {
 exports.createItem = createItem;
 exports.getImage = getImage;
 exports.deleteImage = deleteImage;
+exports.getItems = getItems;

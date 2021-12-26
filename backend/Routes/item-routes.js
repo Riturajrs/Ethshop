@@ -16,7 +16,7 @@ router.post(
   ],
   itemControllers.createItem
 );
-
+router.get("/all",itemControllers.getItems);
 router.get("/image/:filename", itemControllers.getImage);
 router.post("/image/del/:id", itemControllers.deleteImage);
 module.exports = router;
