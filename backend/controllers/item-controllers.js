@@ -27,7 +27,7 @@ const createItem = async (req, res, next) => {
     );
   }
 
-  const { title, description, lPrice, hPrice, creator } = req.body;
+  const { title, description, lPrice, hPrice } = req.body;
 
   const createdItem = new Item({
     title,
@@ -36,7 +36,7 @@ const createItem = async (req, res, next) => {
     imageId: req.file.id,
     lPrice,
     hPrice,
-    creator,
+    creator: req.userData.userId,
   });
 
   let user;
@@ -103,12 +103,6 @@ const getImage = (req, res) => {
     });
 };
 
-const deleteImageinternal = ({ id }) => {
-  console.log(id);
-  gfs.delete(new mongoose.Types.ObjectId(id), (err, data) => {
-    if (err) return res.json({ error: err });
-  });
-};
 
 const deleteImage = (req, res) => {
   gfs.delete(new mongoose.Types.ObjectId(req.params.id), (err, data) => {

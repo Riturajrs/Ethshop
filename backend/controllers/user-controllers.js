@@ -10,7 +10,7 @@ const userLogin = async (req, res, next) => {
       new HttpError("Invalid inputs passed, please check your data.", 422)
     );
   }
-  const { email,password } = req.body;
+  const { email, password } = req.body;
   let existingUser;
   try {
     existingUser = await User.findOne({ email: email });
@@ -40,9 +40,13 @@ const userLogin = async (req, res, next) => {
     );
     return next(error);
   }
-  res.json({ userId: existingUser.id, email: existingUser.email });
+  res.status(200).json({
+    userId: existingUser.id,
+    email: existingUser.email,
+    wishlist: existingUser.wishlist,
+    items: existingUser.items,
+  });
 };
-
 
 const userSignup = async (req, res, next) => {
   const errors = validationResult(req);
@@ -94,11 +98,13 @@ const userSignup = async (req, res, next) => {
     );
     return next(error);
   }
-  res
-    .status(201)
-    .json({ userId: createdUser.id, email: createdUser.email });
+  res.status(201).json({
+    userId: createdUser.id,
+    email: createdUser.email,
+    wishlist: createdUser.wishlist,
+    items: createdUser.items,
+  });
 };
-
 
 const getUserItems = async (req, res, next) => {
   const errors = validationResult(req);
@@ -110,29 +116,14 @@ const getUserItems = async (req, res, next) => {
   const { username } = req.body;
   let existingUser;
   try {
-    existingUser = await User.findOne({ username: username });
+    existingUser = await findById(req.userData.userId);
   } catch (err) {
     return next(new HttpError("User could not be fetched", 404));
   }
-  if (existingUser) {
-    res.status(200).json({
-      username: username,
-      items: existingUser.items,
-      wishlist: existingUser.wishlist,
-    });
-  } else {
-    const newUser = new User({ username: username, items: [], wishlist: [] });
-    try {
-      await newUser.save();
-    } catch (err) {
-      const error = new HttpError(
-        "Signing up failed, please try again later.",
-        500
-      );
-      return next(error);
-    }
-    res.status(201).json({ username: username, items: [], wishlist: [] });
-  }
+  res.status(200).json({
+    items: existingUser.items,
+    wishlist: existingUser.wishlist,
+  });
 };
 const addwishlist = async (req, res, next) => {
   const errors = validationResult(req);
@@ -141,10 +132,10 @@ const addwishlist = async (req, res, next) => {
       new HttpError("Invalid inputs passed, please check your data.", 422)
     );
   }
-  const { username, wishlistid } = req.body;
+  const { wishlistid,creator } = req.body;
   let existingUser;
   try {
-    existingUser = await User.findOne({ username: username });
+    existingUser = await User.findById(creator);
   } catch (err) {
     return next(new HttpError("User could not be fetched", 404));
   }
@@ -157,7 +148,6 @@ const addwishlist = async (req, res, next) => {
     return next(new HttpError("Item could not be added to wishlist!!", 500));
   }
   res.status(201).json({
-    username: username,
     items: existingUser.items,
     wishlist: existingUser.wishlist,
   });
@@ -169,10 +159,10 @@ const removewishlist = async (req, res, next) => {
       new HttpError("Invalid inputs passed, please check your data.", 422)
     );
   }
-  const { username, wishlistid } = req.body;
+  const { wishlistid,creator } = req.body;
   let existingUser;
   try {
-    existingUser = await User.findOne({ username: username });
+    existingUser = await User.findById(creator);
   } catch (err) {
     return next(new HttpError("User could not be fetched", 404));
   }
@@ -188,7 +178,6 @@ const removewishlist = async (req, res, next) => {
     );
   }
   res.status(200).json({
-    username: username,
     items: existingUser.items,
     wishlist: existingUser.wishlist,
   });
@@ -200,10 +189,10 @@ const getwishlist = async (req, res, next) => {
       new HttpError("Invalid inputs passed, please check your data.", 422)
     );
   }
-  const { username } = req.body;
+  const {creator} = req.body;
   let existingUser;
   try {
-    existingUser = await User.findOne({ username: username });
+    existingUser = await User.findById(creator);
   } catch (err) {
     return next(new HttpError("User could not be fetched", 404));
   }

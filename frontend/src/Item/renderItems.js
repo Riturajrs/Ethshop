@@ -2,12 +2,12 @@ import React, {useContext } from "react";
 import Item from "./Item";
 import DUMMY_DATA from "../DUMMY_DATA";
 import "./renderItem.css";
-import { WishContext } from "../context/wishlist";
+import { AuthContext } from "../context/auth";
 import { Fade } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Items = (props) => {
-  const {wishlist} = useContext(WishContext);
+  const {wishlist} = useContext(AuthContext);
   return (
     <React.Fragment>
         <Fade in={true}>

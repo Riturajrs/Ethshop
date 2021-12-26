@@ -75,6 +75,9 @@ const Auth = (props) => {
             "Content-Type": "application/json",
           }
         );
+
+        auth.setitem(responseData.items);
+        auth.getwishlist(responseData.wishlist);
         auth.login(responseData.userId);
         props.onClear();
       } catch (err) {}
@@ -92,7 +95,8 @@ const Auth = (props) => {
             "Content-Type": "application/json",
           }
         );
-
+        auth.setitem(responseData.items);
+        auth.getwishlist(responseData.wishlist);
         auth.login(responseData.userId);
         props.onClear();
       } catch (err) {}
@@ -148,7 +152,7 @@ const Auth = (props) => {
                 type="submit"
                 disabled={!formState.isValid}
               >
-                {isLoading && <Spinner animation="grow" size="sm"/>}
+                {isLoading && <Spinner animation="grow" size="sm" />}
                 {!isLoading && (isLoginMode ? "LOG IN" : "SIGN UP")}
                 {isLoading && (isLoginMode ? "Logging in..." : "Signing up...")}
               </Button>

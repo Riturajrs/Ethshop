@@ -10,8 +10,9 @@ body{
 button:hover{
     cursor:pointer;
 }
-a{
+.listitem {
     text-decoration: none;
+    color: black;
 }
 .Navbar{
     background-color: rgb(133, 131, 122);
@@ -49,6 +50,7 @@ a{
     font-weight: 600;
     margin-left: 30px;
     color:white;
+    text-decoration: none;
 }
 
 
@@ -73,8 +75,9 @@ a{
 }
 
 #dropdown {
-    background-color: rgb(133, 131, 122);
-    border-color: 2px solid rgb(247, 10, 148);
+    margin-right: 5rem;
+    background-color: #ff0055;
+    border-color:#ff0055;
 }
 
 
