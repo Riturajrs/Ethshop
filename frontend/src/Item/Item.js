@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import Heart from "react-heart";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth";
@@ -11,6 +11,18 @@ const Item = (props) => {
   const [wishstate, setWishstate] = useState(props.wishlist || false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const { isLoggedIn, SetWishlist , userId } = useContext(AuthContext);
+  const [ itemImage,setItemImage ] = useState();
+  useEffect(() => {
+    const getImage = async() =>{
+      console.log(`http://localhost:5000/api/items/image/${props.image}`);
+      try{
+        const responseData = await fetch(`http://localhost:5000/api/items/image/${props.image}`);
+        console.log(responseData.url);
+         setItemImage( responseData.url); 
+      }catch (err){}
+    }
+    getImage();
+  },[])
   const wishListHandler = async () => {
     if (!wishstate) {
       try {
@@ -50,7 +62,7 @@ const Item = (props) => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <li>
-        <img src={props.image} alt={props.name} />
+        <img src={itemImage} alt={props.name} />
         {isLoggedIn && (
           <Heart
             className="heart"

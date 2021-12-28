@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Navbar from "./Navigation/navbar";
-import RenderItems from "./Item/renderItems";
+import AllItems from "./Item/allItems";
 import Form from "./sellingForm/form";
 import {
   BrowserRouter as Router,
@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import { useAuth } from "./hooks/auth-hook";
 import { AuthContext } from "./context/auth";
+import Wishlist from "./wishlist/wishlist";
 import ItemPage from "./Item/itemPage";
 
 function App() {
@@ -43,7 +44,7 @@ function App() {
             <Navbar />
             <Switch>
               <Route path="/" exact>
-                <RenderItems />
+                <AllItems />
               </Route>
               <Route path="/:uid/item">
                 <ItemPage />
@@ -51,6 +52,11 @@ function App() {
               {isLoggedIn && (
                 <Route path="/sell">
                   <Form />
+                </Route>
+              )}
+              {isLoggedIn && (
+                <Route path="/wishlist">
+                  <Wishlist />
                 </Route>
               )}
               <Redirect to="/" />

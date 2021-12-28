@@ -13,17 +13,18 @@ const Items = (props) => {
         <Fade in={true}>
           <div>
             <ul>
-              {DUMMY_DATA.map((item) => {
+              {props.items.map((item) => {
+                console.log(item);
                 const wish = wishlist.find(i => i === item.id )?true:false;
                 return (
                   <Item
                     wishlist={wish}
                     key={item.id}
                     id={item.id}
-                    image={item.img}
-                    name={item.name}
-                    lprice={item.lprice}
-                    hprice={item.hprice}
+                    image={item.image}
+                    name={item.title}
+                    lprice={item.lPrice}
+                    hprice={item.hPrice}
                   />
                 );
               })}

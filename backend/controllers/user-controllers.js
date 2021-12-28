@@ -167,7 +167,6 @@ const removewishlist = async (req, res, next) => {
     return next(new HttpError("User could not be fetched", 404));
   }
   let wishlistArray = existingUser.wishlist;
-  console.log(wishlistid);
   wishlistArray = wishlistArray.filter((item) => item !== wishlistid);
   existingUser.wishlist = wishlistArray;
   try {

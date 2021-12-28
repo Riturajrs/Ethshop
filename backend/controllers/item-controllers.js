@@ -102,7 +102,6 @@ const getItems = async (req,res) => {
   res.json({ items: items.map((item) => item.toObject({ getters: true })) });
 }
 const getImage = (req, res) => {
-  console.log(req.params.filename);
   gfs
     .find({
       filename: req.params.filename,
