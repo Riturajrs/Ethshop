@@ -9,13 +9,21 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
-import { useAuth, WishListhook } from "./hooks/auth-hook";
+import { useAuth } from "./hooks/auth-hook";
 import { AuthContext } from "./context/auth";
 import ItemPage from "./Item/itemPage";
 
 function App() {
-  const { wishlist, addwishlist, removewishlist, getwishlist } = WishListhook();
-  const { userId, item, setitem, isLoggedIn, login, logout } = useAuth();
+  const {
+    wishlist,
+    userId,
+    item,
+    setitem,
+    isLoggedIn,
+    login,
+    SetWishlist,
+    logout,
+  } = useAuth();
   return (
     <React.Fragment>
       <AuthContext.Provider
@@ -24,12 +32,10 @@ function App() {
           items: item,
           isLoggedIn: isLoggedIn,
           userId: userId,
+          SetWishlist: SetWishlist,
           login: login,
           logout: logout,
           setitem: setitem,
-          addwishlist: addwishlist,
-          removewishlist: removewishlist,
-          getwishlist: getwishlist
         }}
       >
         <Router>

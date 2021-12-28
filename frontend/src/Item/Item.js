@@ -10,24 +10,22 @@ import "./Item.css";
 const Item = (props) => {
   const [wishstate, setWishstate] = useState(props.wishlist || false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const { isLoggedIn, getwishlist, userId } = useContext(AuthContext);
+  const { isLoggedIn, SetWishlist , userId } = useContext(AuthContext);
   const wishListHandler = async () => {
-    const userID = JSON.parse(localStorage.getItem("userData")).userId;
     if (!wishstate) {
-      console.log(userID);
       try {
         const responseData = await sendRequest(
           `http://localhost:5000/api/users/wishlist`,
           "POST",
           JSON.stringify({
-            creator: userID,
+            creator: userId,
             wishlistid: props.id,
           }),
           {
             "Content-Type": "application/json",
           }
         );
-        getwishlist(responseData.wishlist);
+        SetWishlist(responseData.wishlist);
         setWishstate((prev) => !prev);
       } catch (err) {}
     } else {
@@ -36,14 +34,14 @@ const Item = (props) => {
           `http://localhost:5000/api/users/wishlist`,
           "PATCH",
           JSON.stringify({
-            creator: userID,
+            creator: userId,
             wishlistid: props.id,
           }),
           {
             "Content-Type": "application/json",
           }
         );
-        getwishlist(responseData.wishlist);
+        SetWishlist(responseData.wishlist);
         setWishstate((prev) => !prev);
       } catch (err) {}
     }

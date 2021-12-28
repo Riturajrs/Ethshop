@@ -75,10 +75,12 @@ const Auth = (props) => {
             "Content-Type": "application/json",
           }
         );
-
-        auth.setitem(responseData.items);
-        auth.getwishlist(responseData.wishlist);
-        auth.login(responseData.userId);
+        console.log(responseData);
+        auth.login({
+          uid: responseData.userId,
+          item: responseData.items,
+          wishlist: responseData.wishlist,
+        });
         props.onClear();
       } catch (err) {}
     } else {
@@ -95,9 +97,12 @@ const Auth = (props) => {
             "Content-Type": "application/json",
           }
         );
-        auth.setitem(responseData.items);
-        auth.getwishlist(responseData.wishlist);
-        auth.login(responseData.userId);
+        console.log(responseData);
+        auth.login({
+          uid: responseData.userId,
+          item: responseData.items,
+          wishlist: responseData.wishlist,
+        });
         props.onClear();
       } catch (err) {}
     }

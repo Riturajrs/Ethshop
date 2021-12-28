@@ -7,8 +7,6 @@ export const AuthContext = createContext({
   items: [],
   login: () => {},
   logout: () => {},
-  addwishlist: () => {},
-  removewishlist: () => {},
-  getwishlist: () => {},
+  SetWishlist: () => {},
   setitem: () => {},
 });
