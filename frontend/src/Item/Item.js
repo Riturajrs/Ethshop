@@ -14,7 +14,6 @@ const Item = (props) => {
   const [ itemImage,setItemImage ] = useState();
   useEffect(() => {
     const getImage = async() =>{
-      console.log(`http://localhost:5000/api/items/image/${props.image}`);
       try{
         const responseData = await fetch(`http://localhost:5000/api/items/image/${props.image}`);
         console.log(responseData.url);

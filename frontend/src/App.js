@@ -11,8 +11,8 @@ import {
 } from "react-router-dom";
 import { useAuth } from "./hooks/auth-hook";
 import { AuthContext } from "./context/auth";
-import Wishlist from "./wishlist/wishlist";
-import ItemPage from "./Item/itemPage";
+import Wishlist from "./wishlist/wishlistData";
+import ItemPage from "./Item/itemId";
 
 function App() {
   const {

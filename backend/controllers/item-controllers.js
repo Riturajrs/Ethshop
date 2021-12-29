@@ -19,6 +19,31 @@ conn.once("open", () => {
   });
 });
 
+const itemById = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(
+      new HttpError("Invalid inputs passed, please check your data.", 422)
+    );
+  }
+  const id = req.params.id;
+  let item;
+  try {
+    item = await Item.findById(id);
+  } catch (err) {
+    new HttpError("Item not found!!", 404);
+  }
+  let creator;
+  try {
+    creator = await User.findById(item.creator);
+  } catch (err) {
+    new HttpError("User not found!!", 404);
+  }
+  const {name} = creator;
+  item.creator = creator.name;
+  res.status(200).json({ item: item,creatorName: name });
+};
+
 const createItem = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -85,10 +110,9 @@ const createItem = async (req, res, next) => {
     const error = new HttpError("Creating item failed, please try again.", 500);
     return next(error);
   }
-
   res.status(201).json({ item: createdItem.toObject({ getters: true }) });
 };
-const getItems = async (req,res) => {
+const getItems = async (req, res) => {
   let items;
   try {
     items = await Item.find({});
@@ -100,7 +124,7 @@ const getItems = async (req,res) => {
     return next(error);
   }
   res.json({ items: items.map((item) => item.toObject({ getters: true })) });
-}
+};
 const getImage = (req, res) => {
   gfs
     .find({
@@ -114,7 +138,6 @@ const getImage = (req, res) => {
     });
 };
 
-
 const deleteImage = (req, res) => {
   gfs.delete(new mongoose.Types.ObjectId(req.params.id), (err, data) => {
     if (err) return res.json({ error: err });
@@ -122,7 +145,7 @@ const deleteImage = (req, res) => {
     res.status(200).json({ message: "success" });
   });
 };
-
+exports.itemById = itemById;
 exports.createItem = createItem;
 exports.getImage = getImage;
 exports.deleteImage = deleteImage;

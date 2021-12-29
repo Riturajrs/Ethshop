@@ -1,6 +1,5 @@
 import React, {useContext } from "react";
 import Item from "./Item";
-import DUMMY_DATA from "../DUMMY_DATA";
 import "./renderItem.css";
 import { AuthContext } from "../context/auth";
 import { Fade } from "reactstrap";

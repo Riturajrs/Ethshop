@@ -10,7 +10,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const Items = (props) => {
   const { wishlist } = useContext(AuthContext);
   const [show,setShow] = useState(wishlist.length === 0 ? true: false);
-  console.log(show);
   return (
     <React.Fragment>
       <Fade in={true}>
@@ -18,18 +17,19 @@ const Items = (props) => {
             <h1>Wishlist</h1>
         {show && <MessageModal show={show} onClear={setShow(false)} heading="Wishlist is empty!" message="Please add a item to wishlist"/>}
           <ul>
-            {DUMMY_DATA.map((item) => {
+            {props.items.map((item) => {
               const wish = wishlist.find((i) => i === item.id) ? true : false;
+              console.log(item);
               if (wish) {
                 return (
                   <Item
                     wishlist={wish}
                     key={item.id}
                     id={item.id}
-                    image={item.img}
-                    name={item.name}
-                    lprice={item.lprice}
-                    hprice={item.hprice}
+                    image={item.image}
+                    name={item.title}
+                    lprice={item.lPrice}
+                    hprice={item.hPrice}
                   />
                 );
               }

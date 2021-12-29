@@ -19,7 +19,6 @@ const Users = () => {
     };
     fetchUsers();
   }, [sendRequest]);
-  console.log(loadedItems);
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
