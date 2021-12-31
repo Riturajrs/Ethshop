@@ -13,7 +13,7 @@ const Items = (props) => {
   return (
     <React.Fragment>
       <Fade in={true}>
-        <div>
+        <div className="Header">
             <h1>Wishlist</h1>
         {show && <MessageModal show={show} onClear={setShow(false)} heading="Wishlist is empty!" message="Please add a item to wishlist"/>}
           <ul>

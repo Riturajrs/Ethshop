@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Itempage from "./itemPage";
 import { useParams } from "react-router-dom";
-// import LoadingSpinner from "../Auth/UIElements/Loader";
+import LoadingSpinner from "../Auth/UIElements/Loader";
 import ErrorModal from "../Modal/ErrorModal";
 import { useHttpClient } from "../hooks/http-hook";
 
@@ -24,9 +24,9 @@ const Users = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      {/* {isLoading && (
+      {isLoading && (
           <LoadingSpinner />
-      )} */}
+      )}
       {!isLoading && loadedItem && <Itempage items={loadedItem.item} creator={loadedItem.creatorName} />}
     </React.Fragment>
   );

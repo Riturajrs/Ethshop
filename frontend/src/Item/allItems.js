@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import RenderItems from "./renderItems";
-// import LoadingSpinner from "../Auth/UIElements/Loader";
+import LoadingSpinner from "../Auth/UIElements/Loader";
 import ErrorModal from "../Modal/ErrorModal";
 import { useHttpClient } from "../hooks/http-hook";
 
@@ -22,9 +22,9 @@ const Users = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      {/* {isLoading && (
+      {isLoading && (
           <LoadingSpinner />
-      )} */}
+      )}
       {!isLoading && loadedItems && <RenderItems items={loadedItems} />}
     </React.Fragment>
   );

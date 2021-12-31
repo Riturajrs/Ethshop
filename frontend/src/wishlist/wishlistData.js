@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Wishlist from "./wishlist";
-// import LoadingSpinner from "../Auth/UIElements/Loader";
+import LoadingSpinner from "../Auth/UIElements/Loader";
 import ErrorModal from "../Modal/ErrorModal";
 import { AuthContext } from "../context/auth";
 import { useHttpClient } from "../hooks/http-hook";
@@ -23,9 +23,9 @@ const Users = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      {/* {isLoading && (
+      {isLoading && (
           <LoadingSpinner />
-      )} */}
+      )}
       {!isLoading && loadedItems && <Wishlist items={loadedItems} />}
     </React.Fragment>
   );

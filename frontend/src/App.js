@@ -1,4 +1,4 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import "./App.css";
 import Navbar from "./Navigation/navbar";
 import AllItems from "./Item/allItems";
@@ -13,6 +13,7 @@ import { useAuth } from "./hooks/auth-hook";
 import { AuthContext } from "./context/auth";
 import Wishlist from "./wishlist/wishlistData";
 import ItemPage from "./Item/itemId";
+import Checkout from "./Checkout/checkout";
 
 function App() {
   const {
@@ -57,6 +58,13 @@ function App() {
               {isLoggedIn && (
                 <Route path="/wishlist">
                   <Wishlist />
+                </Route>
+              )}
+              {isLoggedIn && (
+                <Route path="/Checkout">
+                  <StrictMode>
+                    <Checkout />
+                  </StrictMode>
                 </Route>
               )}
               <Redirect to="/" />

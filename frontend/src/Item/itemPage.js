@@ -1,10 +1,13 @@
 import React, { useCallback, useState,useEffect } from "react";
+import { Link } from 'react-router-dom';
 import ErrorModal from "../Modal/ErrorModal";
 import "./itemPage.css";
 import Data from "../DUMMY_DATA";
 
+
 const Page = (props) => {
   const [ itemImage,setItemImage ] = useState();
+
   useEffect(() => {
     const getImage = async() =>{
       try{
@@ -18,24 +21,26 @@ const Page = (props) => {
   console.log(props.items)
   return (
     <React.Fragment>
-      <div className="details">
-        <div className="big-img">
-          <img src={itemImage} alt={props.items.title} />
-          <hr />
-        </div>
-        <div className="box">
-          <div className="row">
-            <h2>{props.items.title}</h2>
+        <div className="details">
+          <div className="big-img">
+            <img src={itemImage} alt={props.items.title} />
             <hr />
-            <span>
-              {props.items.lPrice}eth - {props.items.hPrice}eth
-            </span>
           </div>
-          <p>{props.items.description}</p>
-          <p>Seller : {props.creator} </p>
-          <button className="cart">Buy Now</button>
+          <div className="box">
+            <div className="row">
+              <h2>{props.items.title}</h2>
+              <hr />
+              <span>
+                {props.items.lPrice}eth - {props.items.hPrice}eth
+              </span>
+            </div>
+            <p>{props.items.description}</p>
+            <p>Seller : {props.creator} </p>
+            <Link to="/Checkout">
+              <button className="cart">Buy Now</button>
+            </Link>
+          </div>
         </div>
-      </div>
     </React.Fragment>
   );
 };
