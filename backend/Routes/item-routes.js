@@ -16,6 +16,8 @@ router.post(
   ],
   itemControllers.createItem
 );
+router.delete("/item",itemControllers.deleteItem);
+router.post("/items",itemControllers.userItems);
 router.get("/item/:id",itemControllers.itemById);
 router.get("/all",itemControllers.getItems);
 router.get("/image/:filename", itemControllers.getImage);

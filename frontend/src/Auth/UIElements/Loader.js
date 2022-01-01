@@ -2,7 +2,7 @@ import React from "react";
 import { Loader, Segment } from "semantic-ui-react";
 import "./Loader.css";
 
-function pageLoader() {
+const pageLoader = (props) => {
   return (
     <div>
       <link
@@ -11,7 +11,7 @@ function pageLoader() {
         href="https://cdn.jsdelivr.net/npm/semantic-ui@2/dist/semantic.min.css"
       />
       <Segment id="load">
-        <Loader active size="massive" content="Loading..." />
+        <Loader active size={props.size || "massive"} content="Loading..." />
       </Segment>
     </div>
   );

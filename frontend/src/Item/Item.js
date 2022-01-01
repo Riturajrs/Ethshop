@@ -2,6 +2,7 @@ import React, { useState, useContext,useEffect } from "react";
 import Heart from "react-heart";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth";
+import LoadingSpinner from "../Auth/UIElements/Loader";
 import ErrorModal from "../Modal/ErrorModal";
 import { useHttpClient } from "../hooks/http-hook";
 import Button from "../FormElements/Button";
@@ -11,17 +12,6 @@ const Item = (props) => {
   const [wishstate, setWishstate] = useState(props.wishlist || false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const { isLoggedIn, SetWishlist , userId } = useContext(AuthContext);
-  const [ itemImage,setItemImage ] = useState();
-  useEffect(() => {
-    const getImage = async() =>{
-      try{
-        const responseData = await fetch(`http://localhost:5000/api/items/image/${props.image}`);
-        console.log(responseData.url);
-         setItemImage( responseData.url); 
-      }catch (err){}
-    }
-    getImage();
-  },[])
   const wishListHandler = async () => {
     if (!wishstate) {
       try {
@@ -61,7 +51,8 @@ const Item = (props) => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <li>
-        <img src={itemImage} alt={props.name} />
+        {<img src={`http://localhost:5000/api/items/image/${props.image}`} alt={props.name} />}
+      {(isLoading) && (<LoadingSpinner size="small">Loading...</LoadingSpinner>)}
         {isLoggedIn && (
           <Heart
             className="heart"
@@ -76,6 +67,7 @@ const Item = (props) => {
         <Link to={`${props.id}/item`} style={{ "text-decoration": "none" }}>
           <Button>View</Button>
         </Link>
+        {props.show && props.creator=== userId && <Button style={{"margin-left":"20rem"}}>DELETE</Button>}
       </li>
     </React.Fragment>
   );

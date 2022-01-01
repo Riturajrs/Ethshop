@@ -1,6 +1,5 @@
 import React from 'react';
 
-//import '';
 
 const Card = props => {
   return (

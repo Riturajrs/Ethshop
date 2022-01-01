@@ -39,9 +39,35 @@ const itemById = async (req, res, next) => {
   } catch (err) {
     new HttpError("User not found!!", 404);
   }
-  const {name} = creator;
+  const { name } = creator;
   item.creator = creator.name;
-  res.status(200).json({ item: item,creatorName: name });
+  res.status(200).json({ item: item, creatorName: name });
+};
+
+const userItems = async (req, res, next) => {
+  const { creator } = req.body;
+  let existingUser;
+  try {
+    existingUser = await User.findById(creator);
+  } catch (err) {
+    new HttpError("User not found!!", 404);
+  }
+  let AllItems;
+  try {
+    AllItems = await Item.find({});
+  } catch (err) {
+    new HttpError("Failed to fetch data from items", 500);
+  }
+  try {
+    existingUser.items.map((itemid) => {
+      AllItems.filter((item) => {
+        return item._id === itemid;
+      });
+    });
+  } catch (err) {
+    new HttpError("Failed to fetch data from items", 500);
+  }
+  res.status(200).json({ items: AllItems });
 };
 
 const createItem = async (req, res, next) => {
@@ -52,7 +78,7 @@ const createItem = async (req, res, next) => {
     );
   }
 
-  const { title, description, lPrice, hPrice } = req.body;
+  const { title, description, creator, lPrice, hPrice } = req.body;
 
   const createdItem = new Item({
     title,
@@ -61,7 +87,7 @@ const createItem = async (req, res, next) => {
     imageId: req.file.id,
     lPrice,
     hPrice,
-    creator: req.userData.userId,
+    creator: creator,
   });
 
   let user;
@@ -112,6 +138,46 @@ const createItem = async (req, res, next) => {
   }
   res.status(201).json({ item: createdItem.toObject({ getters: true }) });
 };
+
+const deleteItem = async (req, res, next) => {
+  const { id, creator } = req.body;
+  let existingItem;
+  try {
+    existingItem = await Item.findById(id).populate("creator");
+  } catch (err) {
+    new HttpError("Item deletion failed", 500);
+  }
+  if (!existingItem) {
+    new HttpError("Item to be deleted could not be found!!", 404);
+  }
+  if (existingItem.creator.id !== creator) {
+    next(new HttpError("Unauthorized access!!", 401));
+  }
+  try {
+    const sess = await mongoose.startSession();
+    sess.startTransaction();
+    await existingItem.remove({ session: sess });
+    existingItem.creator.items.pull(existingItem);
+    await existingItem.creator.save({ session: sess });
+    await sess.commitTransaction();
+  } catch (err) {
+    new HttpError("Something went wrong, could not delete item", 500);
+  }
+  try {
+    gfs.delete(
+      new mongoose.Types.ObjectId(existingItem.imageId),
+      (err, data) => {
+        if (err) {
+          new HttpError("Image of item could not be deleted!!", 500);
+        }
+      }
+    );
+  } catch (err) {
+    new HttpError("Something went wrong, could not delete item", 500);
+  }
+  res.status(200).json("Item deletion was a success");
+};
+
 const getItems = async (req, res) => {
   let items;
   try {
@@ -150,3 +216,5 @@ exports.createItem = createItem;
 exports.getImage = getImage;
 exports.deleteImage = deleteImage;
 exports.getItems = getItems;
+exports.userItems = userItems;
+exports.deleteItem = deleteItem;

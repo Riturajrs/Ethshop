@@ -2,13 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import Wishlist from "./wishlist";
 import LoadingSpinner from "../Auth/UIElements/Loader";
 import ErrorModal from "../Modal/ErrorModal";
-import { AuthContext } from "../context/auth";
 import { useHttpClient } from "../hooks/http-hook";
 
 const Users = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedItems, setLoadedItems] = useState();
-  const { wishlist } = useContext(AuthContext);
   useEffect(() => {
     const fetchUsers = async () => {
       try {

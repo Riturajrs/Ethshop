@@ -9,6 +9,7 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
+import UserItems from "./Item/userItems";
 import { useAuth } from "./hooks/auth-hook";
 import { AuthContext } from "./context/auth";
 import Wishlist from "./wishlist/wishlistData";
@@ -58,6 +59,11 @@ function App() {
               {isLoggedIn && (
                 <Route path="/wishlist">
                   <Wishlist />
+                </Route>
+              )}
+              {isLoggedIn && (
+                <Route path="/myitem">
+                  <UserItems />
                 </Route>
               )}
               {isLoggedIn && (

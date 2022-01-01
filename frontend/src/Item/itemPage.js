@@ -2,7 +2,6 @@ import React, { useCallback, useState,useEffect } from "react";
 import { Link } from 'react-router-dom';
 import ErrorModal from "../Modal/ErrorModal";
 import "./itemPage.css";
-import Data from "../DUMMY_DATA";
 
 
 const Page = (props) => {
