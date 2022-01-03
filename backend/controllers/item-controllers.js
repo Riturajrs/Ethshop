@@ -61,13 +61,18 @@ const userItems = async (req, res, next) => {
   try {
     existingUser.items.map((itemid) => {
       AllItems.filter((item) => {
+        console.log(item._id + "  " + itemid);
         return item._id === itemid;
       });
     });
   } catch (err) {
     new HttpError("Failed to fetch data from items", 500);
   }
-  res.status(200).json({ items: AllItems });
+  if (AllItems.length !== existingUser.items.length) {
+    res.status(200).json({ items: [] });
+  } else {
+    res.status(200).json({ items: AllItems });
+  }
 };
 
 const createItem = async (req, res, next) => {
