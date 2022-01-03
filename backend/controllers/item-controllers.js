@@ -61,18 +61,17 @@ const userItems = async (req, res, next) => {
   try {
     existingUser.items.map((itemid) => {
       AllItems.filter((item) => {
-        console.log(item._id + "  " + itemid);
         return item._id === itemid;
       });
     });
   } catch (err) {
     new HttpError("Failed to fetch data from items", 500);
   }
-  if (AllItems.length !== existingUser.items.length) {
-    res.status(200).json({ items: [] });
-  } else {
+  // if (AllItems.length !== existingUser.items.length) {
+  //   res.status(200).json({ items: [] });
+  // } else {
     res.status(200).json({ items: AllItems });
-  }
+  // }
 };
 
 const createItem = async (req, res, next) => {
@@ -180,7 +179,7 @@ const deleteItem = async (req, res, next) => {
   } catch (err) {
     new HttpError("Something went wrong, could not delete item", 500);
   }
-  res.status(200).json("Item deletion was a success");
+  res.status(200).json({ message: "Item deletion was a success" });
 };
 
 const getItems = async (req, res) => {

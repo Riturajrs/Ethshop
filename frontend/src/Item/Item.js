@@ -1,4 +1,5 @@
 import React, { useState, useContext,useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Heart from "react-heart";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth";
@@ -9,9 +10,26 @@ import Button from "../FormElements/Button";
 import "./Item.css";
 
 const Item = (props) => {
+  const history = useHistory();
   const [wishstate, setWishstate] = useState(props.wishlist || false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const { isLoggedIn, SetWishlist , userId } = useContext(AuthContext);
+  const deleteHandler = async() => {
+    try {
+      await sendRequest(
+        `http://localhost:5000/api/items/item`,
+        "DELETE",
+        JSON.stringify({
+          creator: userId,
+          id: props.id,
+        }),
+        {
+          "Content-Type": "application/json",
+        }
+      );
+      history.push("/");
+    } catch (err) {}
+  }
   const wishListHandler = async () => {
     if (!wishstate) {
       try {
@@ -67,7 +85,7 @@ const Item = (props) => {
         <Link to={`${props.id}/item`} style={{ "text-decoration": "none" }}>
           <Button>View</Button>
         </Link>
-        {props.show && props.creator=== userId && <Button style={{"margin-left":"20rem"}}>DELETE</Button>}
+        {props.show && props.creator=== userId && <Button onClick={deleteHandler} style={{"margin-left":"20rem"}}>DELETE</Button>}
       </li>
     </React.Fragment>
   );
