@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { ethers } from "ethers";
+import { Form, Input, Label, Button } from "semantic-ui-react";
 import ErrorMessage from "./ErrorMessage";
 import TxList from "./TxList";
+import './checkout.css';
 
 const startPayment = async ({ setError, setTxs, ether, addr}) => {
   try {
@@ -41,42 +43,41 @@ export default function Checkout() {
   };
 
   return (
-    <form className="m-4" onSubmit={handleSubmit} style={{'position':'center'}}>
-      <div className="credit-card w-full lg:w-1/2 sm:w-auto shadow-lg mx-auto rounded-xl bg-white">
-        <main className="mt-4 p-4">
-          <h1 className="text-xl font-semibold text-gray-700 text-center">
-            Send ETH payment
-          </h1>
-          <div className="">
-            <div className="my-3">
-              <input
-                type="text"
-                name="addr"
-                className="input input-bordered block w-full focus:ring focus:outline-none"
-                placeholder="Recipient Address"
-              />
-            </div>
-            <div className="my-3">
-              <input
-                name="ether"
-                type="text"
-                className="input input-bordered block w-full focus:ring focus:outline-none"
-                placeholder="Amount in ETH"
-              />
-            </div>
-          </div>
-        </main>
-        <footer className="p-4">
-          <button
-            type="submit"
-            className="btn btn-primary submit-button focus:ring focus:outline-none w-full"
-          >
-            Pay now
-          </button>
-          <ErrorMessage message={error} />
-          <TxList txs={txs} />
-        </footer>
-      </div>
-    </form>
+    <div>
+        <link
+                async
+                    rel="stylesheet"
+                    href="https://cdn.jsdelivr.net/npm/semantic-ui@2/dist/semantic.min.css"
+                />
+               
+                <Form onSubmit={handleSubmit} className="check-form">
+                    <div className='header'>Send ETH Payment</div>
+                    <Form.Group widths="equal">
+                        <Form.Field>
+                            <Label>Recipient Address</Label>
+                            <Input
+                                type='text'
+                                name='addr'
+                                placeholder='Address'
+                            />
+                        </Form.Field>
+                        <Form.Field className='price-box'>
+                            <Label>Amount in Eth</Label>
+                            <Input
+                                type='text'
+                                name='ether'
+                                label='ETH'
+                                labelPosition='right'
+                                placeholder='Amount'
+                            />
+                        </Form.Field>
+                    </Form.Group>
+                    <Button type='submit'>Submit</Button>
+                    <div>
+                      <ErrorMessage message={error} />
+                      <TxList txs={txs} />
+                    </div>
+                </Form>
+            </div>        
   );
 }
