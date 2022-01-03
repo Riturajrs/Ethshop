@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 
 import Input from "../Auth/FormElements/Input";
 import Button from "../Auth/FormElements/Button";
-import ErrorModal from "../Auth/UIElements/ErrorModal";
-import LoadingSpinner from "../Auth/UIElements/LoadingSpinner";
+import ErrorModal from "../Modal/ErrorModal";
+import LoadingSpinner from "../Auth/UIElements/Loader";
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
@@ -32,7 +32,7 @@ const Form = () => {
         value: "",
         isValid: false,
       },
-      address: {
+      price: {
         value: "",
         isValid: false,
       },
@@ -50,18 +50,17 @@ const Form = () => {
     event.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("product", formState.inputs.product.value);
-      formData.append("price", formState.inputs.products.value);
+      formData.append("title", formState.inputs.product.value);
+      formData.append("lPrice", formState.inputs.price.value);
+      formData.append("hPrice", formState.inputs.price.value);
       formData.append("description", formState.inputs.description.value);
-      formData.append("address", formState.inputs.address.value);
       formData.append("image", formState.inputs.image.value);
-      await sendRequest(`${process.env.REACT_APP_BACKEND_URL}/places`, "POST", formData,{
-        Authorization: 'Bearer '+auth.token
-      });
+      formData.append("creator",auth.userId);
+      await sendRequest(`http://localhost:5000/api/items/create`, "POST", formData);
       history.push("/");
     } catch (err) {}
   };
-
+  console.log(formState);
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
@@ -90,8 +89,8 @@ const Form = () => {
           id="description"
           element="textarea"
           label=" Product Description"
-          validators={[VALIDATOR_MINLENGTH(5)]}
-          errorText="Please enter a valid description (at least 5 characters)."
+          validators={[VALIDATOR_MINLENGTH(10)]}
+          errorText="Please enter a valid description (at least 10 characters)."
           onInput={inputHandler}
         />
         <ImageUpload

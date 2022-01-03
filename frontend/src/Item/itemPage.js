@@ -30,7 +30,7 @@ const Page = (props) => {
               <h2>{props.items.title}</h2>
               <hr />
               <span>
-                {props.items.lPrice}eth - {props.items.hPrice}eth
+                {props.items.lPrice} eth
               </span>
             </div>
             <p>{props.items.description}</p>
