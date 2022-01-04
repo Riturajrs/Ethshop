@@ -13,6 +13,7 @@ router.post(
     check("lPrice").not().isEmpty(),
     check("hPrice").not().isEmpty(),
     check("creator").not().isEmpty(),
+    check("Metamask_add").not().isEmpty(),
   ],
   itemControllers.createItem
 );

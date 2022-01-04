@@ -58,20 +58,13 @@ const userItems = async (req, res, next) => {
   } catch (err) {
     new HttpError("Failed to fetch data from items", 500);
   }
+  let resultArray;
   try {
-    existingUser.items.map((itemid) => {
-      AllItems.filter((item) => {
-        return item._id === itemid;
-      });
-    });
+      resultArray = AllItems.filter((item) => existingUser.items.includes(item._id));
   } catch (err) {
     new HttpError("Failed to fetch data from items", 500);
   }
-  // if (AllItems.length !== existingUser.items.length) {
-  //   res.status(200).json({ items: [] });
-  // } else {
-    res.status(200).json({ items: AllItems });
-  // }
+    res.status(200).json({ items: resultArray });
 };
 
 const createItem = async (req, res, next) => {
@@ -82,7 +75,7 @@ const createItem = async (req, res, next) => {
     );
   }
 
-  const { title, description, creator, lPrice, hPrice } = req.body;
+  const { title, Metamask_add, description, creator, lPrice, hPrice } = req.body;
 
   const createdItem = new Item({
     title,
@@ -91,6 +84,7 @@ const createItem = async (req, res, next) => {
     imageId: req.file.id,
     lPrice,
     hPrice,
+    Metamask_add,
     creator: creator,
   });
 

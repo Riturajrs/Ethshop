@@ -8,7 +8,7 @@ import { useHttpClient } from "../hooks/http-hook";
 const Users = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedItems, setLoadedItems] = useState();
-  const { userId } = useContext(AuthContext);
+  const { userId,wishlist } = useContext(AuthContext);
   useEffect(() => {
     const fetchUsers = async () => {
       try {

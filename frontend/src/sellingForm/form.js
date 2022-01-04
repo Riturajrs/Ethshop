@@ -8,6 +8,8 @@ import LoadingSpinner from "../Auth/UIElements/Loader";
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
+  VALIDATOR_CRYPTO,
+  VALIDATOR_INTEGER,
 } from "../Auth/user/validators";
 import ImageUpload from "../Auth/FormElements/ImageUpload";
 import { useForm } from "../hooks/form-hook";
@@ -43,7 +45,6 @@ const Form = () => {
     },
     false
   );
-
   const history = useHistory();
 
   const placeSubmitHandler = async (event) => {
@@ -53,7 +54,7 @@ const Form = () => {
       formData.append("title", formState.inputs.product.value);
       formData.append("lPrice", formState.inputs.price.value);
       formData.append("hPrice", formState.inputs.price.value);
-      formData.append("Metamask_add", formState.inputs.metamask_add.value);
+      formData.append("Metamask_add", formState.inputs.metamask_add.value.toString());
       formData.append("description", formState.inputs.description.value);
       formData.append("image", formState.inputs.image.value);
       formData.append("creator",auth.userId);
@@ -61,7 +62,6 @@ const Form = () => {
       history.push("/");
     } catch (err) {}
   };
-  console.log(formState);
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
@@ -81,9 +81,9 @@ const Form = () => {
           id="price"
           element="input"
           type="text"
-          label="Price"
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid title."
+          label="Price (in Wei)"
+          validators={[VALIDATOR_REQUIRE(),VALIDATOR_INTEGER()]}
+          errorText="Please enter a valid number(an integer)"
           onInput={inputHandler}
         />
         <Input
@@ -91,8 +91,8 @@ const Form = () => {
           element="input"
           type="text"
           label="Metamask Address"
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid title."
+          validators={[VALIDATOR_CRYPTO(),VALIDATOR_REQUIRE()]}
+          errorText="Please enter a valid address"
           onInput={inputHandler}
         />
         <Input

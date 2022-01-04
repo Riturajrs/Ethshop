@@ -9,6 +9,7 @@ const itemSchema = new Schema({
   imageId: { type: String, required: true },
   lPrice: { type: Number, required: true },
   hPrice: { type: Number, required: true },
+  Metamask_add: { type: String, required: true },
   creator: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
 });
 
