@@ -1,12 +1,20 @@
 import React, { useCallback, useState,useEffect } from "react";
 import { Link } from 'react-router-dom';
+import Checkout from '../Checkout/checkout'; 
 import ErrorModal from "../Modal/ErrorModal";
 import "./itemPage.css";
 
 
+
 const Page = (props) => {
   const [ itemImage,setItemImage ] = useState();
-
+  const checkoutHandler = async(e) => {
+    e.preventDefault();
+    try{await Checkout(props.items.lPrice.toString(),"0x1e47b293AF32C98c0C7FfF7539E9798E7e265Fd2")
+  }catch(err){
+    console.log(err);
+  } 
+  }
   useEffect(() => {
     const getImage = async() =>{
       try{
@@ -30,14 +38,12 @@ const Page = (props) => {
               <h2>{props.items.title}</h2>
               <hr />
               <span>
-                {props.items.lPrice} eth
+                {props.items.lPrice} Wei
               </span>
             </div>
             <p>{props.items.description}</p>
             <p>Seller : {props.creator} </p>
-            <Link to="/Checkout">
-              <button className="cart">Buy Now</button>
-            </Link>
+              <button className="cart" onClick={checkoutHandler} >Buy Now</button>
           </div>
         </div>
     </React.Fragment>

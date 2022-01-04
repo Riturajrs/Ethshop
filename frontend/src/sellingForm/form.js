@@ -26,13 +26,13 @@ const Form = () => {
       },
       price: {
         value: "",
-        isvalid:false,
+        isvalid: false,
+      },
+      metamask_add: {
+        value: "",
+        isvalid: false,
       },
       description: {
-        value: "",
-        isValid: false,
-      },
-      price: {
         value: "",
         isValid: false,
       },
@@ -53,6 +53,7 @@ const Form = () => {
       formData.append("title", formState.inputs.product.value);
       formData.append("lPrice", formState.inputs.price.value);
       formData.append("hPrice", formState.inputs.price.value);
+      formData.append("Metamask_add", formState.inputs.metamask_add.value);
       formData.append("description", formState.inputs.description.value);
       formData.append("image", formState.inputs.image.value);
       formData.append("creator",auth.userId);
@@ -66,7 +67,7 @@ const Form = () => {
       <ErrorModal error={error} onClear={clearError} />
       <form className="place-form" onSubmit={placeSubmitHandler}>
         {isLoading && <LoadingSpinner asOverlay />}
-        <div className="header">List Your Items <b>HERE</b></div>
+        <div className="header">List Your Items <b>Here</b></div>
         <Input
           id="product"
           element="input"
@@ -81,6 +82,15 @@ const Form = () => {
           element="input"
           type="text"
           label="Price"
+          validators={[VALIDATOR_REQUIRE()]}
+          errorText="Please enter a valid title."
+          onInput={inputHandler}
+        />
+        <Input
+          id="metamask_add"
+          element="input"
+          type="text"
+          label="Metamask Address"
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a valid title."
           onInput={inputHandler}

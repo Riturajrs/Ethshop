@@ -80,7 +80,7 @@ const Item = (props) => {
         )}
         <br />
         <div className="Title">{props.name}</div>
-        {props.lprice} eth
+        {props.lprice} Wei
         <br />
         <Link to={`${props.id}/item`} style={{ "text-decoration": "none" }}>
           <Button>View</Button>
