@@ -17,7 +17,6 @@ const startPayment = async ( ether, addr ) => {
       to: addr,
       value: ethers.utils.ether
     });
-    console.log( ether, addr );
     console.log("tx", tx);
   } catch (err) {
     console.log(err.message);

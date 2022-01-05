@@ -33,11 +33,9 @@ export const validate = (value, validators) => {
     }
     if (validator.type === VALIDATOR_TYPE_INTEGER) {
       value = parseInt(value.trim());
-      isValid = isValid && Number.isInteger(value);
+      isValid = isValid && Number.isInteger(value) && value > 0;
     }
     if (validator.type === VALIDATOR_TYPE_CRYPTO) {
-      console.log(Web3.utils.isAddress(value));
-      console.log(typeof(value));
       isValid = isValid && Web3.utils.isAddress(value);
     }
     if (validator.type === VALIDATOR_TYPE_MINLENGTH) {

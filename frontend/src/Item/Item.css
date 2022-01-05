@@ -14,7 +14,8 @@ li {
 img {
   border-radius: 5px;
   align-self: center;
-  max-width: 80%;
+  width: 300px;
+  height: 200px;
   z-index: 1;
 }
 .Title {
