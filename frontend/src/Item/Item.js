@@ -85,7 +85,7 @@ const Item = props => {
         )}
         <br />
         <div className='Title'>{props.name}</div>
-        {props.lprice} Wei
+        <div className='Price'>{props.lprice} Wei</div>
         <br />
         <Link to={`${props.id}/item`} style={{ 'text-decoration': 'none' }}>
           <Button>View</Button>
