@@ -10,7 +10,7 @@ import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_CRYPTO,
   VALIDATOR_INTEGER,
-} from "../Auth/user/validators";
+} from "../validators";
 import ImageUpload from "../Auth/FormElements/ImageUpload";
 import { useForm } from "../hooks/form-hook";
 import { useHttpClient } from "../hooks/http-hook";
@@ -80,9 +80,9 @@ const Form = () => {
         <Input
           id="price"
           element="input"
-          type="text"
+          type="number"
           label="Price (in Wei)"
-          validators={[VALIDATOR_REQUIRE(),VALIDATOR_INTEGER()]}
+          validators={[VALIDATOR_INTEGER()]}
           errorText="Please enter a valid number(an integer)"
           onInput={inputHandler}
         />

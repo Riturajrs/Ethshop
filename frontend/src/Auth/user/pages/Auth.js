@@ -9,7 +9,7 @@ import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
-} from "../validators";
+} from "../../../validators";
 import ErrorModal from "../../../Modal/ErrorModal";
 import { useForm } from "../../../hooks/form-hook";
 import { useHttpClient } from "../../../hooks/http-hook";

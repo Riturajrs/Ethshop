@@ -1,4 +1,4 @@
-import { validate as cryptovalidate } from 'bitcoin-address-validation';
+import Web3 from 'web3';
 const VALIDATOR_TYPE_REQUIRE = 'REQUIRE';
 const VALIDATOR_TYPE_MINLENGTH = 'MINLENGTH';
 const VALIDATOR_TYPE_MAXLENGTH = 'MAXLENGTH';
@@ -32,10 +32,13 @@ export const validate = (value, validators) => {
       isValid = isValid && value.trim().length > 0;
     }
     if (validator.type === VALIDATOR_TYPE_INTEGER) {
-      isValid = isValid && Number.isInteger(value.trim());
+      value = parseInt(value.trim());
+      isValid = isValid && Number.isInteger(value);
     }
     if (validator.type === VALIDATOR_TYPE_CRYPTO) {
-      isValid = isValid && cryptovalidate(value.trim());
+      console.log(Web3.utils.isAddress(value));
+      console.log(typeof(value));
+      isValid = isValid && Web3.utils.isAddress(value);
     }
     if (validator.type === VALIDATOR_TYPE_MINLENGTH) {
       isValid = isValid && value.trim().length >= validator.val;
