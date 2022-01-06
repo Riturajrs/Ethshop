@@ -1,22 +1,29 @@
-import React, { StrictMode } from "react";
-import "./App.css";
-import Navbar from "./Navigation/navbar";
-import AllItems from "./Item/allItems";
-import Form from "./sellingForm/form";
+import React, { StrictMode, Suspense } from 'react'
+import './App.css'
+import Navbar from './Navigation/navbar'
+import AllItems from './Item/allItems'
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Switch,
-} from "react-router-dom";
-import UserItems from "./Item/userItems";
-import { useAuth } from "./hooks/auth-hook";
-import { AuthContext } from "./context/auth";
-import Wishlist from "./wishlist/wishlistData";
-import ItemPage from "./Item/itemId";
-import Checkout from "./Checkout/checkout";
+  Switch
+} from 'react-router-dom'
+import LoadingSpinner from './Auth/UIElements/Loader'
+import { useAuth } from './hooks/auth-hook'
+import { AuthContext } from './context/auth'
+// import UserItems from "./Item/userItems";
+// import Form from "./sellingForm/form";
+// import Wishlist from "./wishlist/wishlistData";
+// import ItemPage from "./Item/itemId";
+// import Checkout from "./Checkout/checkout";
 
-function App() {
+const Wishlist = React.lazy(() => import('./wishlist/wishlistData'))
+const ItemPage = React.lazy(() => import('./Item/itemId'))
+const UserItems = React.lazy(() => import('./Item/userItems'))
+const Form = React.lazy(() => import('./sellingForm/form'))
+const Checkout = React.lazy(() => import('./Checkout/checkout'))
+
+function App () {
   const {
     wishlist,
     userId,
@@ -25,8 +32,8 @@ function App() {
     isLoggedIn,
     login,
     SetWishlist,
-    logout,
-  } = useAuth();
+    logout
+  } = useAuth()
   return (
     <React.Fragment>
       <AuthContext.Provider
@@ -38,48 +45,56 @@ function App() {
           SetWishlist: SetWishlist,
           login: login,
           logout: logout,
-          setitem: setitem,
+          setitem: setitem
         }}
       >
         <Router>
           <main>
             <Navbar />
             <Switch>
-              <Route path="/" exact>
+              <Route path='/' exact>
                 <AllItems />
               </Route>
-              <Route path="/:uid/item">
+              <Suspense
+                fallback={
+                  <div className='center'>
+                    <LoadingSpinner />
+                  </div>
+                }
+              >
+              <Route path='/:uid/item'>
                 <ItemPage />
               </Route>
-              {isLoggedIn && (
-                <Route path="/sell">
-                  <Form />
-                </Route>
-              )}
-              {isLoggedIn && (
-                <Route path="/wishlist">
-                  <Wishlist />
-                </Route>
-              )}
-              {isLoggedIn && (
-                <Route path="/myitem">
-                  <UserItems />
-                </Route>
-              )}
-              {isLoggedIn && (
-                <Route path="/Checkout">
-                  <StrictMode>
-                    <Checkout />
-                  </StrictMode>
-                </Route>
-              )}
-              <Redirect to="/" />
+                {isLoggedIn && (
+                  <Route path='/sell'>
+                    <Form />
+                  </Route>
+                )}
+                {isLoggedIn && (
+                  <Route path='/wishlist'>
+                    <Wishlist />
+                  </Route>
+                )}
+                {isLoggedIn && (
+                  <Route path='/myitem'>
+                    <UserItems />
+                  </Route>
+                )}
+                {isLoggedIn && (
+                  <Route path='/Checkout'>
+                    <StrictMode>
+                      <Checkout />
+                    </StrictMode>
+                  </Route>
+                )}
+              </Suspense>
+              <Redirect to='/' />
             </Switch>
           </main>
         </Router>
       </AuthContext.Provider>
     </React.Fragment>
-  );
+  )
 }
 
-export default App;
+export default App

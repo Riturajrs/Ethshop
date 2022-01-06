@@ -52,7 +52,7 @@ function Navbar() {
                   <Dropdown.Item>
                     <Link to="/wishlist" className="listitem">
                       Wishlist
-                      {wishitems ? ": " + wishitems : ""}
+                      {/* {wishitems ? ": " + wishitems : ""} */}
                     </Link>
                   </Dropdown.Item>
                   <Dropdown.Item>
