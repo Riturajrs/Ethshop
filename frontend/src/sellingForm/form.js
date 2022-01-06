@@ -58,7 +58,7 @@ const Form = () => {
       formData.append("description", formState.inputs.description.value);
       formData.append("image", formState.inputs.image.value);
       formData.append("creator",auth.userId);
-      await sendRequest(`http://localhost:5000/api/items/create`, "POST", formData);
+      await sendRequest(`${process.env.REACT_APP_BACKEND_URL}/items/create`, "POST", formData);
       history.push("/");
     } catch (err) {}
   };

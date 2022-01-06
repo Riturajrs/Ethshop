@@ -17,7 +17,7 @@ const Item = props => {
   const deleteHandler = async () => {
     try {
       await sendRequest(
-        `http://localhost:5000/api/items/item`,
+        `${process.env.REACT_APP_BACKEND_URL}/items/item`,
         'DELETE',
         JSON.stringify({
           creator: userId,
@@ -34,7 +34,7 @@ const Item = props => {
     if (!wishstate) {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/users/wishlist`,
+          `${process.env.REACT_APP_BACKEND_URL}/users/wishlist`,
           'POST',
           JSON.stringify({
             creator: userId,
@@ -50,7 +50,7 @@ const Item = props => {
     } else {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/users/wishlist`,
+          `${process.env.REACT_APP_BACKEND_URL}/users/wishlist`,
           'PATCH',
           JSON.stringify({
             creator: userId,
@@ -71,7 +71,7 @@ const Item = props => {
       <li>
         {
           <img
-            src={`http://localhost:5000/api/items/image/${props.image}`}
+            src={`${process.env.REACT_APP_BACKEND_URL}/items/image/${props.image}`}
             alt={props.name}
           />
         }

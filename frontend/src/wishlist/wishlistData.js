@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Wishlist from "./wishlist";
 import LoadingSpinner from "../Auth/UIElements/Loader";
+import Fallback from "../fallbackPage";
 import ErrorModal from "../Modal/ErrorModal";
 import { useHttpClient } from "../hooks/http-hook";
 
@@ -11,7 +12,7 @@ const Users = () => {
     const fetchUsers = async () => {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/items/all"
+          `${process.env.REACT_APP_BACKEND_URL}/items/all`
         );
         setLoadedItems(responseData.items);
       } catch (err) {}

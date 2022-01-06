@@ -3,6 +3,7 @@ import RenderItems from "./renderItems";
 import { AuthContext } from "../context/auth";
 import LoadingSpinner from "../Auth/UIElements/Loader";
 import ErrorModal from "../Modal/ErrorModal";
+import Fallback from "../fallbackPage";
 import { useHttpClient } from "../hooks/http-hook";
 import './userItems.css';
 
@@ -14,7 +15,7 @@ const Users = () => {
     const fetchUsers = async () => {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/items/items",
+          `${process.env.REACT_APP_BACKEND_URL}/items/items`,
           "POST",
           JSON.stringify({
             creator: userId,
@@ -28,11 +29,13 @@ const Users = () => {
     };
     fetchUsers();
   }, [sendRequest]);
+  console.log(loadedItems);
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && <LoadingSpinner />}
       <div className="header"> <h1>Your Items</h1> </div>
+      {!isLoading && loadedItems && loadedItems.length === 0 && <Fallback />}
       {!isLoading && loadedItems && <RenderItems items={loadedItems} show={true} />}
     </React.Fragment>
   );

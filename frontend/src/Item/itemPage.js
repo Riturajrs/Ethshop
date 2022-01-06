@@ -26,7 +26,7 @@ const Page = props => {
     const getImage = async () => {
       try {
         const responseData = await fetch(
-          `http://localhost:5000/api/items/image/${props.items.image}`
+          `${process.env.REACT_APP_BACKEND_URL}/items/image/${props.items.image}`
         )
         setItemImage(responseData.url)
       } catch (err) {}

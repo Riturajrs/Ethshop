@@ -1,10 +1,9 @@
 import React, { useContext,useState } from "react";
 import Item from "../Item/Item";
-import DUMMY_DATA from "../DUMMY_DATA";
+import Fallback from "../fallbackPage";
 import "./wishlist.css";
 import { AuthContext } from "../context/auth";
 import { Fade } from "reactstrap";
-import MessageModal from "../Modal/MessageModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Items = (props) => {
@@ -15,7 +14,7 @@ const Items = (props) => {
       <Fade in={true}>
         <div className="Header">
             <h1>Wishlist</h1>
-        {show && <MessageModal show={show} onClear={setShow(false)} heading="Wishlist is empty!" message="Please add a item to wishlist"/>}
+        {wishlist.length === 0 && <Fallback />}  
           <ul>
             {props.items.map((item) => {
               const wish = wishlist.find((i) => i === item.id) ? true : false;
