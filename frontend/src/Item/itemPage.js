@@ -26,7 +26,7 @@ const Page = props => {
         addr: props.items.Metamask_add
       })
     } catch (err) {
-      console.log(err)
+      setIsMessage(err.message);
     }
   }
   useEffect(() => {
