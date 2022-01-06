@@ -7,7 +7,6 @@ import { useHttpClient } from "../hooks/http-hook";
 const Users = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedItems, setLoadedItems] = useState();
-  console.log(process.env);
   useEffect(() => {
     const fetchUsers = async () => {
       try {

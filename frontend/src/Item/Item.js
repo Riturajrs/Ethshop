@@ -14,20 +14,22 @@ const Item = props => {
   const { error, sendRequest, clearError } = useHttpClient()
   const { isLoggedIn, SetWishlist, userId } = useContext(AuthContext)
   const deleteHandler = async () => {
-    try {
-      await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/items/item`,
-        'DELETE',
-        JSON.stringify({
-          creator: userId,
-          id: props.id
-        }),
-        {
-          'Content-Type': 'application/json'
-        }
-      )
-      history.push('/')
-    } catch (err) {}
+    if (window.confirm(`Are you sure you want to delete ${props.name}`)) {
+      try {
+        await sendRequest(
+          `${process.env.REACT_APP_BACKEND_URL}/items/item`,
+          'DELETE',
+          JSON.stringify({
+            creator: userId,
+            id: props.id
+          }),
+          {
+            'Content-Type': 'application/json'
+          }
+        )
+        history.push('/')
+      } catch (err) {}
+    }
   }
   const wishListHandler = async () => {
     if (!wishstate) {
@@ -64,6 +66,7 @@ const Item = props => {
       } catch (err) {}
     }
   }
+  console.log(props)
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
