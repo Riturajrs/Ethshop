@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Wishlist from "./wishlist";
 import LoadingSpinner from "../Auth/UIElements/Loader";
-import Fallback from "../fallbackPage";
 import ErrorModal from "../Modal/ErrorModal";
 import { useHttpClient } from "../hooks/http-hook";
 

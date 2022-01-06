@@ -1,13 +1,12 @@
 import React from "react";
 import Button from '../FormElements/Button'
-import { Redirect } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal'
 
-const MessageModal = (props) => {
+const ErrorModal = (props) => {
   return (
-    <Modal show={!!props.show} onHide={props.onClear} >
+    <Modal show={!!props.message} onHide={props.onClear}>
         <Modal.Header closeButton>
-          <Modal.Title>{props.heading}</Modal.Title>
+          <Modal.Title>Message</Modal.Title>
         </Modal.Header>
         <Modal.Body>{props.message}</Modal.Body>
         <Modal.Footer>
@@ -19,4 +18,4 @@ const MessageModal = (props) => {
   );
 };
 
-export default MessageModal;
+export default ErrorModal;

@@ -1,23 +1,30 @@
-import React, { useCallback, useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useState, useEffect } from 'react'
+import { AuthContext } from '../context/auth'
 import Checkout from '../Checkout/checkout'
 import ErrorModal from '../Modal/ErrorModal'
+import MessageModal from "../Modal/MessageModal";
 import './itemPage.css'
 
 const Page = props => {
+  const { isLoggedIn } = useContext(AuthContext);
   const [isError,setIsError] = useState(null);
+  const [Message,setIsMessage] = useState(null);
   const [itemImage, setItemImage] = useState()
   const checkoutHandler = async e => {
     e.preventDefault()
     if(!window.ethereum){
       setIsError("No crypto wallet detected!");
+      return;
     }
-    console.log(props.items);
+    if(!isLoggedIn){
+      setIsMessage("Please login first");
+      return;
+    }
     try {
       await Checkout(
-        props.items.lPrice.toString(),
-        props.items.Metamask_add
-      )
+      {  ether: props.items.lPrice,
+        addr: props.items.Metamask_add
+      })
     } catch (err) {
       console.log(err)
     }
@@ -36,9 +43,13 @@ const Page = props => {
   const ClearError = () => {
     setIsError(null);
   }
+  const ClearMessage = () => {
+    setIsMessage(null);
+  }
   return (
     <React.Fragment>
       <ErrorModal error={isError} onClear={ClearError} />
+      <MessageModal message={Message} onClear={ClearMessage} />
       <div className='details'>
         <div className='big-img'>
           <img src={itemImage} alt={props.items.title} />
@@ -48,7 +59,7 @@ const Page = props => {
           <div className='row'>
             <h2>{props.items.title}</h2>
             <hr />
-            <span>{props.items.lPrice} Wei</span>
+            <span>{props.items.lPrice} Szabo(Microether)</span>
           </div>
           <p>{props.items.description}</p>
           <p>Seller : {props.creator} </p>

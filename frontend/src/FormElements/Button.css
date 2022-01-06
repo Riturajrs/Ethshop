@@ -1,15 +1,14 @@
 .button {
   font: inherit;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 2.5rem;
   border: 1px solid #ff0055;
   border-radius: 4px;
   background: #ff0055;
   color: white;
   cursor: pointer;
-  margin: 1rem;
+  margin-right: 1rem;
   text-decoration: none;
   display: inline-block;
-  margin-bottom: 0.1rem;
 }
 
 .button:focus {
@@ -18,7 +17,7 @@
 
 .button:hover,
 .button:active {
-  background: #ff4382;
+  background: #fd4381;
   border-color: #ff4382;
 }
 
@@ -59,4 +58,32 @@
 
 .button--big {
   font-size: 1.5rem;
+}
+@media (max-width: 700px){
+  .button {
+    font: inherit;
+    padding: 0.25rem 1rem;
+    border: 1px solid #ff0055;
+    border-radius: 4px;
+    background: #ff0055;
+    color: white;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    text-decoration: none;
+    display: inline-block;
+  }
+}
+@media (max-width: 350px){
+  .button {
+    font: inherit;
+    padding: 0.2rem 0.75rem;
+    border: 1px solid #ff0055;
+    border-radius: 4px;
+    background: #ff0055;
+    color: white;
+    cursor: pointer;
+    margin-right: 0.25rem;
+    text-decoration: none;
+    display: inline-block;
+  }
 }

@@ -1,6 +1,6 @@
 import React, { useContext,useState } from "react";
 import Item from "../Item/Item";
-import Fallback from "../fallbackPage";
+import Fallback from "../Fallback/fallbackPage";
 import "./wishlist.css";
 import { AuthContext } from "../context/auth";
 import { Fade } from "reactstrap";

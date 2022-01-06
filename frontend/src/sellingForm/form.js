@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
-import Input from "../Auth/FormElements/Input";
-import Button from "../Auth/FormElements/Button";
+import Input from "../FormElements/Input";
+import Button from "../FormElements/Button";
 import ErrorModal from "../Modal/ErrorModal";
 import LoadingSpinner from "../Auth/UIElements/Loader";
 import {
@@ -11,7 +11,7 @@ import {
   VALIDATOR_CRYPTO,
   VALIDATOR_INTEGER,
 } from "../validators";
-import ImageUpload from "../Auth/FormElements/ImageUpload";
+import ImageUpload from "../FormElements/ImageUpload";
 import { useForm } from "../hooks/form-hook";
 import { useHttpClient } from "../hooks/http-hook";
 import { AuthContext } from "../context/auth";
@@ -81,7 +81,7 @@ const Form = () => {
           id="price"
           element="input"
           type="number"
-          label="Price (in Wei)"
+          label="Price (in microether/szabo)"
           validators={[VALIDATOR_INTEGER()]}
           errorText="Please enter a valid number(an integer)"
           onInput={inputHandler}
