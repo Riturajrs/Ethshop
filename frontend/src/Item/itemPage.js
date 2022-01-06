@@ -2,31 +2,33 @@ import React, { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../context/auth'
 import Checkout from '../Checkout/checkout'
 import ErrorModal from '../Modal/ErrorModal'
-import MessageModal from "../Modal/MessageModal";
+import MessageModal from '../Modal/MessageModal'
 import './itemPage.css'
 
 const Page = props => {
-  const { isLoggedIn } = useContext(AuthContext);
-  const [isError,setIsError] = useState(null);
-  const [Message,setIsMessage] = useState(null);
+  const { isLoggedIn } = useContext(AuthContext)
+  const [isError, setIsError] = useState(null)
+  const [Message, setIsMessage] = useState(null)
   const [itemImage, setItemImage] = useState()
   const checkoutHandler = async e => {
     e.preventDefault()
-    if(!window.ethereum){
-      setIsError("No crypto wallet detected!");
-      return;
+    if (!window.ethereum) {
+      setIsError('No crypto wallet detected!')
+      return
     }
-    if(!isLoggedIn){
-      setIsMessage("Please login first");
-      return;
+    if (!isLoggedIn) {
+      setIsMessage('Please login first')
+      return
     }
     try {
-      await Checkout(
-      {  ether: props.items.lPrice,
+      const tx = await Checkout({
+        ether: props.items.lPrice,
         addr: props.items.Metamask_add
       })
+      console.log(tx);
+      setIsMessage('Transaction hash: ' + tx.hash)
     } catch (err) {
-      setIsMessage(err.message);
+      setIsMessage(err.message)
     }
   }
   useEffect(() => {
@@ -41,10 +43,10 @@ const Page = props => {
     getImage()
   }, [])
   const ClearError = () => {
-    setIsError(null);
+    setIsError(null)
   }
   const ClearMessage = () => {
-    setIsMessage(null);
+    setIsMessage(null)
   }
   return (
     <React.Fragment>
@@ -63,7 +65,7 @@ const Page = props => {
           </div>
           <p>{props.items.description}</p>
           <p>Seller : {props.creator} </p>
-          <button className='cart' type="submit" onClick={checkoutHandler}>
+          <button className='cart' type='submit' onClick={checkoutHandler}>
             Buy Now
           </button>
         </div>

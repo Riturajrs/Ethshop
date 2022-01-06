@@ -15,6 +15,7 @@ const startPayment = async ({ ether, addr }) => {
     to: addr,
     value: ethers.utils.parseEther(ether)
   })
+  return tx;
 }
 
 export default startPayment
