@@ -4,6 +4,7 @@ import { AuthContext } from "../context/auth";
 import LoadingSpinner from "../Auth/UIElements/Loader";
 import ErrorModal from "../Modal/ErrorModal";
 import { useHttpClient } from "../hooks/http-hook";
+import './userItems.css';
 
 const Users = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -31,6 +32,7 @@ const Users = () => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && <LoadingSpinner />}
+      <div className="header"> <h1>Your Items</h1> </div>
       {!isLoading && loadedItems && <RenderItems items={loadedItems} show={true} />}
     </React.Fragment>
   );
