@@ -95,7 +95,34 @@ a {
   z-index: 2;
   width: 8%;
 }
-
+@media (max-width: 700px){
+  .button {
+    font: inherit;
+    padding: 0.25rem 1rem;
+    border: 1px solid #ff0055;
+    border-radius: 4px;
+    background: #ff0055;
+    color: white;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    text-decoration: none;
+    display: inline-block;
+  }
+}
+@media (max-width: 350px){
+  .button {
+    font: inherit;
+    padding: 0.2rem 0.75rem;
+    border: 1px solid #ff0055;
+    border-radius: 4px;
+    background: #ff0055;
+    color: white;
+    cursor: pointer;
+    margin-right: 0.25rem;
+    text-decoration: none;
+    display: inline-block;
+  }
+}
 @media (max-width: 1500px) {
   img {
     border-radius: 5px;
