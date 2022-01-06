@@ -2,13 +2,15 @@ import React, { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../context/auth'
 import Checkout from '../Checkout/checkout'
 import ErrorModal from '../Modal/ErrorModal'
+import { useHttpClient } from '../hooks/http-hook'
 import MessageModal from '../Modal/MessageModal'
 import './itemPage.css'
 
 const Page = props => {
-  const { isLoggedIn } = useContext(AuthContext)
+  const { isLoggedIn,userId } = useContext(AuthContext)
   const [isError, setIsError] = useState(null)
   const [Message, setIsMessage] = useState(null)
+  const { sendRequest } = useHttpClient()
   const [itemImage, setItemImage] = useState()
   const checkoutHandler = async e => {
     e.preventDefault()
@@ -25,7 +27,24 @@ const Page = props => {
         ether: props.items.lPrice,
         addr: props.items.Metamask_add
       })
-      console.log(tx);
+      if (tx) {
+        console.log(tx.hash);
+        try {
+          const responseData = await sendRequest(
+            `${process.env.REACT_APP_BACKEND_URL}/users/transaction`,
+            'POST',
+            JSON.stringify({
+              creator: userId,
+              hash: tx.hash
+            }),
+            {
+              'Content-Type': 'application/json'
+            }
+          )
+        } catch (err) {
+          setIsError(err)
+        }
+      }
       setIsMessage('Transaction hash: ' + tx.hash)
     } catch (err) {
       setIsMessage(err.message)

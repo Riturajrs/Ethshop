@@ -1,6 +1,7 @@
 const { validationResult } = require("express-validator");
 const HttpError = require("../models/http-error");
 const User = require("../models/users");
+const Transaction = require("../models/transactions");
 const bcrypt = require("bcryptjs");
 
 const userLogin = async (req, res, next) => {
@@ -199,9 +200,35 @@ const getwishlist = async (req, res, next) => {
     wishlist: existingUser.wishlist,
   });
 };
+const addTransaction = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(
+      new HttpError("Invalid inputs passed, please check your data.", 422)
+    );
+  }
+  const { hash,creator } = req.body;
+  const newTransaction = new Transaction({
+    hash,
+    userId: creator
+  });
+  try {
+    await newTransaction.save();
+  } catch (err) {
+    const error = new HttpError(
+      "Saving transaction, please try again later.",
+      500
+    );
+    return next(error);
+  }
+  res.status(200).json({
+    "Message":"Success"
+  });
+};
 exports.getUserItems = getUserItems;
 exports.getwishlist = getwishlist;
 exports.removewishlist = removewishlist;
 exports.addwishlist = addwishlist;
 exports.userLogin = userLogin;
 exports.userSignup = userSignup;
+exports.addTransaction = addTransaction;

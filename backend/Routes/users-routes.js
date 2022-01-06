@@ -40,4 +40,8 @@ router.get(
   "/wishlist",
   UserController.getwishlist
 );
+router.post(
+  "/transaction",
+  UserController.addTransaction
+);
 module.exports = router;

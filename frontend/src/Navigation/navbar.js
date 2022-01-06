@@ -3,7 +3,7 @@ import UserIcon from "@material-ui/icons/AccountCircle";
 import { Fade } from "reactstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import { AuthContext } from "../context/auth";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Icon from "../icon.png";
 import Button from "../FormElements/Button"
 import Auth from "../Auth/user/pages/Auth";
@@ -17,6 +17,7 @@ function Navbar() {
   const logoutHandler = (e) => {
     e.preventDefault();
     logout();
+    <Redirect to="/"/>
   };
   const loginHandler = (e) => {
     e.preventDefault();
