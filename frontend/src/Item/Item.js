@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import Heart from 'react-heart'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/auth'
-import LoadingSpinner from '../Auth/UIElements/Loader'
 import ErrorModal from '../Modal/ErrorModal'
 import { useHttpClient } from '../hooks/http-hook'
 import Button from '../FormElements/Button'
@@ -12,7 +11,7 @@ import './Item.css'
 const Item = props => {
   const history = useHistory()
   const [wishstate, setWishstate] = useState(props.wishlist || false)
-  const { isLoading, error, sendRequest, clearError } = useHttpClient()
+  const { error, sendRequest, clearError } = useHttpClient()
   const { isLoggedIn, SetWishlist, userId } = useContext(AuthContext)
   const deleteHandler = async () => {
     try {
@@ -75,7 +74,6 @@ const Item = props => {
             alt={props.name}
           />
         }
-        {isLoading && <LoadingSpinner size='small'>Loading...</LoadingSpinner>}
         {isLoggedIn && (
           <Heart
             className='heart'

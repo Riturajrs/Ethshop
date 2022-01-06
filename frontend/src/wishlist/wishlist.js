@@ -1,4 +1,4 @@
-import React, { useContext,useState } from "react";
+import React, { useContext } from "react";
 import Item from "../Item/Item";
 import Fallback from "../Fallback/fallbackPage";
 import "./wishlist.css";
@@ -8,7 +8,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const Items = (props) => {
   const { wishlist } = useContext(AuthContext);
-  const [show,setShow] = useState(wishlist.length === 0 ? true: false);
   return (
     <React.Fragment>
       <Fade in={true}>

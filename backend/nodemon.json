@@ -2,8 +2,7 @@
     "env": {
       "DB_USER": "MegaProjectUser",
       "DB_PASSWORD": "LdYah2FVZJSb32Sx",
-      "DB_NAME": "OLX",
-      "JWT_KEY": "secretstring_for_token_generation"
+      "DB_NAME": "OLX"
     }
   }
   

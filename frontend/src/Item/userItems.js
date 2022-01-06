@@ -10,7 +10,7 @@ import './userItems.css';
 const Users = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedItems, setLoadedItems] = useState();
-  const { userId,wishlist } = useContext(AuthContext);
+  const { userId } = useContext(AuthContext);
   useEffect(() => {
     const fetchUsers = async () => {
       try {
