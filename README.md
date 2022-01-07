@@ -35,4 +35,5 @@ The site is fully responsive on a large spectrum of screen sizes.
 7. Blockchain network: Any Ethereum enabled network.
 
 ## How it Works ?
-[FRONTEND](https://ethshop.web.app/)
+The site is hosted on Firebase.
+Link: https://ethshop.web.app/
