@@ -5,13 +5,14 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/auth'
 import ErrorModal from '../Modal/ErrorModal'
 import { useHttpClient } from '../hooks/http-hook'
+import LoadingSpinner from "../PageLoader/PageLoader"
 import Button from '../FormElements/Button'
 import './Item.css'
 
 const Item = props => {
   const history = useHistory()
   const [wishstate, setWishstate] = useState(props.wishlist || false)
-  const { error, sendRequest, clearError } = useHttpClient()
+  const { error, sendRequest,isLoading, clearError } = useHttpClient()
   const { isLoggedIn, SetWishlist, userId } = useContext(AuthContext)
   const deleteHandler = async () => {
     if (window.confirm(`Are you sure you want to delete ${props.name}`)) {
@@ -70,6 +71,7 @@ const Item = props => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
+      {isLoading && <LoadingSpinner/>}
       <li>
        <div style={{"flex":"wrap"}}>
         {
