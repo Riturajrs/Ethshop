@@ -73,11 +73,42 @@ button:hover{
     border: none;
     font-size: 1.5rem;
 }
-
 #dropdown {
-    margin-right: 5rem;
+    margin-right: 10px;
     background-color: #ff0055;
-    border-color:#ff0055;
+    border-color: #ff0055;
+  }
+  #menu {
+    margin-right: 65px;
+  }
+  
+@media (max-width: 700px) {
+    #dropdown {
+      margin-right: 7px;
+      background-color: #ff0055;
+      border-color: #ff0055;
+    }
+    #menu {
+      margin-right: 72.5px;
+    }
+  }
+
+@media (max-width: 450px) {
+    #dropdown {
+        margin-right: 5px;
+    }
+    #menu {
+        margin-right: 60px;
+    }
+}
+
+@media (max-width: 350px) {
+    #dropdown {
+        margin-right: 0px;
+    }
+    #menu {
+        margin-right: 55px;
+    }
 }
 
 
@@ -98,5 +129,5 @@ button:hover{
     .Navbar .links button {
         font-size: 15px;
         margin-left: 10px;
-    }
+    } 
 }

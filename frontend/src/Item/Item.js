@@ -73,8 +73,8 @@ const Item = props => {
       <li>
         {
           <img
-            src={`${process.env.REACT_APP_BACKEND_URL}/items/image/${props.image}`}
-            alt={props.name}
+          src={`${process.env.REACT_APP_BACKEND_URL}/items/image/${props.image}`}
+          alt={props.name}
           />
         }
         {isLoggedIn && (
