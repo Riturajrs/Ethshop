@@ -36,5 +36,3 @@ The site is fully responsive on a large spectrum of screen sizes.
 
 ## How it Works ?
 [FRONTEND](https://ethshop.web.app/)
-
-BACKEND: https://ethshop.herokuapp.com/api
