@@ -75,7 +75,6 @@ const Auth = (props) => {
             "Content-Type": "application/json",
           }
         );
-        console.log(responseData);
         auth.login({
           uid: responseData.userId,
           item: responseData.items,
@@ -97,7 +96,6 @@ const Auth = (props) => {
             "Content-Type": "application/json",
           }
         );
-        console.log(responseData);
         auth.login({
           uid: responseData.userId,
           item: responseData.items,

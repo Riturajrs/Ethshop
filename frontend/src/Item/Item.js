@@ -67,7 +67,6 @@ const Item = props => {
       } catch (err) {}
     }
   }
-  console.log(props)
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />

@@ -28,7 +28,6 @@ const Page = props => {
         addr: props.items.Metamask_add
       })
       if (tx) {
-        console.log(tx.hash);
         try {
           const responseData = await sendRequest(
             `${process.env.REACT_APP_BACKEND_URL}/users/transaction`,
