@@ -34,6 +34,5 @@ The site is fully responsive on a large spectrum of screen sizes.
 6. Database: MongoDB
 7. Blockchain network: Any Ethereum enabled network.
 
-## How it Works ?
-The site is hosted on Firebase.\
-Link: https://ethshop.web.app/
+## Link to the site:
+[Ethshop]{https://ethshop.web.app/}
