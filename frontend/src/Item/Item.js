@@ -71,19 +71,21 @@ const Item = props => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <li>
-        {isLoggedIn && (
-          <Heart
-            className='heart'
-            isActive={wishstate}
-            onClick={wishListHandler}
-          />
-        )}
+       <div style={{"flex":"wrap"}}>
         {
           <img
           src={`${process.env.REACT_APP_BACKEND_URL}/items/image/${props.image}`}
           alt={props.name}
           />
         }
+         {isLoggedIn && (
+          <Heart
+            className='heart'
+            isActive={wishstate}
+            onClick={wishListHandler}
+          />
+        )}
+        </div>
         <br />
         <div className='Title'>{props.name}</div>
         <div className='Price'>{props.lprice} Szabo</div>
