@@ -35,4 +35,4 @@ The site is fully responsive on a large spectrum of screen sizes.
 7. Blockchain network: Any Ethereum enabled network.
 
 ## Link to the site:
-[Ethshop]{https://ethshop.web.app/}
+[Ethshop](https://ethshop.web.app/)
