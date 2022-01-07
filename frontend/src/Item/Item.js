@@ -71,12 +71,6 @@ const Item = props => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <li>
-        {
-          <img
-          src={`${process.env.REACT_APP_BACKEND_URL}/items/image/${props.image}`}
-          alt={props.name}
-          />
-        }
         {isLoggedIn && (
           <Heart
             className='heart'
@@ -84,6 +78,12 @@ const Item = props => {
             onClick={wishListHandler}
           />
         )}
+        {
+          <img
+          src={`${process.env.REACT_APP_BACKEND_URL}/items/image/${props.image}`}
+          alt={props.name}
+          />
+        }
         <br />
         <div className='Title'>{props.name}</div>
         <div className='Price'>{props.lprice} Szabo</div>
