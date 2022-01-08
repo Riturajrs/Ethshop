@@ -1,5 +1,5 @@
+//Input Component for FORM.
 import React, { useReducer, useEffect } from 'react';
-
 import { validate } from '../validators';
 import './Input.css';
 

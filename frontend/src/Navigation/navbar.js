@@ -3,7 +3,7 @@ import UserIcon from '@material-ui/icons/AccountCircle'
 import { Fade } from 'reactstrap'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { AuthContext } from '../context/auth'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Icon from '../icon.png'
 import Button from '../FormElements/Button'
 import Auth from '../Auth/user/pages/Auth'
@@ -14,10 +14,12 @@ function Navbar () {
   const [showLogin, setShowLogin] = useState(false)
   const { isLoggedIn, logout, wishlist } = useContext(AuthContext)
   const wishitems = wishlist.length
+  //LogoutHandler
   const logoutHandler = e => {
     e.preventDefault()
     logout()
   }
+  //LoginHandler
   const loginHandler = e => {
     e.preventDefault()
     setShowLogin(true)

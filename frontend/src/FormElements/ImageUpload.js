@@ -1,3 +1,4 @@
+//Image Upload Component for FORM.
 import React, { useRef, useState, useEffect } from "react";
 import Button from "./Button";
 import "./ImageUpload.css";
@@ -17,6 +18,7 @@ const ImageUpload = (props) => {
     };
     fileReader.readAsDataURL(File);
   },[File])
+  //Handles Picked Image.
   const pickedHandler = (event) => {
     let pickedFile;
     let fileIsValid = isValid;
@@ -32,6 +34,7 @@ const ImageUpload = (props) => {
     }
     props.onInput(props.id, pickedFile, fileIsValid)
   };
+  //Handles Image Uploading.
   const pickImageHandler = () => {
     filePickerRef.current.click();
   };

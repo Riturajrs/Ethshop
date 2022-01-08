@@ -1,3 +1,4 @@
+//Loader Component upon processing the Request.
 import React from "react";
 import { Loader, Segment } from "semantic-ui-react";
 import "./Loader.css";

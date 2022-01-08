@@ -14,6 +14,8 @@ const Item = props => {
   const [wishstate, setWishstate] = useState(props.wishlist || false)
   const { error, sendRequest,isLoading, clearError } = useHttpClient()
   const { isLoggedIn, SetWishlist, userId } = useContext(AuthContext)
+
+  //Handles Deletion of items.
   const deleteHandler = async () => {
     if (window.confirm(`Are you sure you want to delete ${props.name}`)) {
       try {
@@ -32,6 +34,8 @@ const Item = props => {
       } catch (err) {}
     }
   }
+
+  //Handles Addition of items to Wishlist.
   const wishListHandler = async () => {
     if (!wishstate) {
       try {

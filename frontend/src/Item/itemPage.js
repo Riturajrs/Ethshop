@@ -1,3 +1,4 @@
+//Descriptionn Page for Items.
 import React, { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../context/auth'
 import Checkout from '../Checkout/checkout'
@@ -12,6 +13,8 @@ const Page = props => {
   const [Message, setIsMessage] = useState(null)
   const { sendRequest } = useHttpClient()
   const [itemImage, setItemImage] = useState()
+
+  //Handles Processing of CryptoPayment.
   const checkoutHandler = async e => {
     e.preventDefault()
     if (!window.ethereum) {

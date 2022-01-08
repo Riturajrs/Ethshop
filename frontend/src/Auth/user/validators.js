@@ -1,3 +1,4 @@
+//Validators for Form.
 import { validate as cryptovalidate } from 'bitcoin-address-validation';
 const VALIDATOR_TYPE_REQUIRE = 'REQUIRE';
 const VALIDATOR_TYPE_MINLENGTH = 'MINLENGTH';
@@ -28,27 +29,35 @@ export const VALIDATOR_INTEGER = () => ({ type: VALIDATOR_TYPE_INTEGER });
 export const validate = (value, validators) => {
   let isValid = true;
   for (const validator of validators) {
+    //validates requirement of input.
     if (validator.type === VALIDATOR_TYPE_REQUIRE) {
       isValid = isValid && value.trim().length > 0;
     }
+    //validates type as integer.
     if (validator.type === VALIDATOR_TYPE_INTEGER) {
       isValid = isValid && Number.isInteger(value.trim());
     }
+    //validates crypto wallet address.
     if (validator.type === VALIDATOR_TYPE_CRYPTO) {
       isValid = isValid && cryptovalidate(value.trim());
     }
+    //validates Min Length.
     if (validator.type === VALIDATOR_TYPE_MINLENGTH) {
       isValid = isValid && value.trim().length >= validator.val;
     }
+    //validates Max Length.
     if (validator.type === VALIDATOR_TYPE_MAXLENGTH) {
       isValid = isValid && value.trim().length <= validator.val;
     }
+    //validates Min value.
     if (validator.type === VALIDATOR_TYPE_MIN) {
       isValid = isValid && +value >= validator.val;
     }
+    //validates Max Value.
     if (validator.type === VALIDATOR_TYPE_MAX) {
       isValid = isValid && +value <= validator.val;
     }
+    //validates Email.
     if (validator.type === VALIDATOR_TYPE_EMAIL) {
       isValid = isValid && /^\S+@\S+\.\S+$/.test(value);
     }

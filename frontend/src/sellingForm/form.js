@@ -90,7 +90,7 @@ const Form = () => {
           id="metamask_add"
           element="input"
           type="text"
-          label="Metamask Address"
+          label="Crypto Wallet Address"
           validators={[VALIDATOR_CRYPTO(),VALIDATOR_REQUIRE()]}
           errorText="Please enter a valid address"
           onInput={inputHandler}

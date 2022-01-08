@@ -34,7 +34,8 @@ const Auth = (props) => {
     },
     false
   );
-
+  
+  //Handler for switching Login/Signup.
   const switchModeHandler = (e) => {
     e.preventDefault();
     if (!isLoginMode) {
@@ -60,6 +61,7 @@ const Auth = (props) => {
     setIsLoginMode((prevMode) => !prevMode);
   };
 
+  //Handler for Submitting Login/Signup form.
   const authSubmitHandler = async (event) => {
     event.preventDefault();
     if (isLoginMode) {

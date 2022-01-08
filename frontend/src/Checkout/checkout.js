@@ -1,6 +1,8 @@
+//Payment Gateway.
 import { ethers } from 'ethers'
 import './checkout.css'
 
+//starts Payment Process.
 const startPayment = async ({ ether, addr }) => {
   if (!window.ethereum)
     throw new Error('No crypto wallet found. Please install it.')

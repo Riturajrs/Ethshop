@@ -1,3 +1,4 @@
+//Positioning Items to Front Page.
 import React, { useEffect, useState } from "react";
 import RenderItems from "./renderItems";
 import LoadingSpinner from "../Auth/UIElements/Loader";
