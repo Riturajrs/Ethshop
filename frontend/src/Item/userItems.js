@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import RenderItems from "./renderItems";
 import { AuthContext } from "../context/auth";
-import LoadingSpinner from "../Auth/UIElements/Loader";
+import LoadingSpinner from "../Loader/Loader";
 import ErrorModal from "../Modal/ErrorModal";
 import Fallback from "../Fallback/fallbackPage";
 import { useHttpClient } from "../hooks/http-hook";

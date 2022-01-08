@@ -8,7 +8,7 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-import LoadingSpinner from './Auth/UIElements/Loader'
+import LoadingSpinner from './Loader/Loader'
 import { useAuth } from './hooks/auth-hook'
 import { AuthContext } from './context/auth'
 // import UserItems from "./Item/userItems";

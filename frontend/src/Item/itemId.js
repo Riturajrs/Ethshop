@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Itempage from "./itemPage";
 import { useParams } from "react-router-dom";
-import LoadingSpinner from "../Auth/UIElements/Loader";
+import LoadingSpinner from "../Loader/Loader";
 import ErrorModal from "../Modal/ErrorModal";
 import { useHttpClient } from "../hooks/http-hook";
 

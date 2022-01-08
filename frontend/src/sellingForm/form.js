@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import Input from "../FormElements/Input";
 import Button from "../FormElements/Button";
 import ErrorModal from "../Modal/ErrorModal";
-import LoadingSpinner from "../Auth/UIElements/Loader";
+import LoadingSpinner from "../Loader/Loader";
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,

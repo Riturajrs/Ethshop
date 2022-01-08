@@ -1,19 +1,19 @@
 import React, { useState, useContext } from "react";
 import Modal from "react-bootstrap/Modal";
 import Card from "./Card";
-import Input from "../../../FormElements/Input";
+import Input from "../FormElements/Input";
 import Spinner from "react-bootstrap/Spinner";
-import Button from "../../../FormElements/Button";
+import Button from "../FormElements/Button";
 
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
-} from "../../../validators";
-import ErrorModal from "../../../Modal/ErrorModal";
-import { useForm } from "../../../hooks/form-hook";
-import { useHttpClient } from "../../../hooks/http-hook";
-import { AuthContext } from "../../../context/auth";
+} from "../validators";
+import ErrorModal from "../Modal/ErrorModal";
+import { useForm } from "../hooks/form-hook";
+import { useHttpClient } from "../hooks/http-hook";
+import { AuthContext } from "../context/auth";
 import "./Auth.css";
 
 const Auth = (props) => {

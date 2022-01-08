@@ -6,7 +6,7 @@ import { AuthContext } from '../context/auth'
 import { Link } from 'react-router-dom'
 import Icon from '../icon.png'
 import Button from '../FormElements/Button'
-import Auth from '../Auth/user/pages/Auth'
+import Auth from '../Auth/Auth'
 import '../App.css'
 import './navbar.css'
 

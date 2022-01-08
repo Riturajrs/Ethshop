@@ -1,7 +1,7 @@
 //Positioning Items to Front Page.
 import React, { useEffect, useState } from "react";
 import RenderItems from "./renderItems";
-import LoadingSpinner from "../Auth/UIElements/Loader";
+import LoadingSpinner from "../Loader/Loader";
 import ErrorModal from "../Modal/ErrorModal";
 import { useHttpClient } from "../hooks/http-hook";
 
