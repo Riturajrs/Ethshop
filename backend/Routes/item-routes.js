@@ -4,6 +4,7 @@ const fileUpload = require("../middleware/upload");
 const router = express.Router();
 const itemControllers = require("../controllers/item-controllers");
 
+// Creates a new item
 router.post(
   "/create",
   fileUpload.single("image"),
@@ -17,10 +18,16 @@ router.post(
   ],
   itemControllers.createItem
 );
+// For deleting item
 router.delete("/item",itemControllers.deleteItem);
+// Gets items listed by a particular user
 router.post("/items",itemControllers.userItems);
+// Gets item by id
 router.get("/item/:id",itemControllers.itemById);
+// Gets all items
 router.get("/all",itemControllers.getItems);
+// Gets image bt filename
 router.get("/image/:filename", itemControllers.getImage);
+//Deletes image by file id
 router.post("/image/del/:id", itemControllers.deleteImage);
 module.exports = router;

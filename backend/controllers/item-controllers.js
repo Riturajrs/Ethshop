@@ -4,6 +4,7 @@ const HttpError = require('../models/http-error')
 const Item = require('../models/item')
 const User = require('../models/users')
 
+// For handling image data of items
 const conn = mongoose.createConnection(
   `mongodb+srv://MegaProjectUser:8Qy7ueuhWLTh5fZG@cluster0.ccgat.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
   {
@@ -19,6 +20,7 @@ conn.once('open', () => {
   })
 })
 
+// Gets item by id of item
 const itemById = async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -44,6 +46,7 @@ const itemById = async (req, res, next) => {
   res.status(200).json({ item: item, creatorName: name })
 }
 
+// Returns id of all the items of the user
 const userItems = async (req, res, next) => {
   const { creator } = req.body
   let existingUser
@@ -67,6 +70,7 @@ const userItems = async (req, res, next) => {
   res.status(200).json({ items: resultArray })
 }
 
+// Creates new item
 const createItem = async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -137,6 +141,7 @@ const createItem = async (req, res, next) => {
   res.status(201).json({ item: createdItem.toObject({ getters: true }) })
 }
 
+// Deletes item from database including image and also from wishlist of other users.
 const deleteItem = async (req, res, next) => {
   const { id, creator } = req.body
   let existingItem
@@ -193,6 +198,7 @@ const deleteItem = async (req, res, next) => {
   res.status(200).json({ message: 'Item deletion was a success' })
 }
 
+// Gets all the item ids in the database
 const getItems = async (req, res) => {
   let items
   try {
@@ -206,6 +212,7 @@ const getItems = async (req, res) => {
   }
   res.json({ items: items.map(item => item.toObject({ getters: true })) })
 }
+// Gets image from database
 const getImage = (req, res) => {
   gfs
     .find({
@@ -218,7 +225,7 @@ const getImage = (req, res) => {
       gfs.openDownloadStreamByName(req.params.filename).pipe(res)
     })
 }
-
+// Deletes image from database
 const deleteImage = (req, res) => {
   gfs.delete(new mongoose.Types.ObjectId(req.params.id), (err, data) => {
     if (err) return res.json({ error: err })

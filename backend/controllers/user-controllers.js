@@ -4,6 +4,7 @@ const User = require("../models/users");
 const Transaction = require("../models/transactions");
 const bcrypt = require("bcryptjs");
 
+// User login logic
 const userLogin = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -49,6 +50,7 @@ const userLogin = async (req, res, next) => {
   });
 };
 
+// User signup logic
 const userSignup = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -106,7 +108,7 @@ const userSignup = async (req, res, next) => {
     items: createdUser.items,
   });
 };
-
+// Gets items of the user
 const getUserItems = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -126,6 +128,7 @@ const getUserItems = async (req, res, next) => {
     wishlist: existingUser.wishlist,
   });
 };
+// Adds to wishlist of user
 const addwishlist = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -153,6 +156,7 @@ const addwishlist = async (req, res, next) => {
     wishlist: existingUser.wishlist,
   });
 };
+// Removes from wishlist of user
 const removewishlist = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -182,6 +186,7 @@ const removewishlist = async (req, res, next) => {
     wishlist: existingUser.wishlist,
   });
 };
+// Gets the wishlist of user
 const getwishlist = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -200,6 +205,7 @@ const getwishlist = async (req, res, next) => {
     wishlist: existingUser.wishlist,
   });
 };
+// Adds transaction details in database
 const addTransaction = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

@@ -19,8 +19,9 @@ app.use((req, res, next) => {
 
   next();
 });
-
+// For item data handling
 app.use("/api/items", itemRoutes);
+// For user data handling
 app.use("/api/users", userRoutes);
 
 app.use((req, res, next) => {
