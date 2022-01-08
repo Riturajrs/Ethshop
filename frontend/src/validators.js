@@ -28,28 +28,36 @@ export const VALIDATOR_INTEGER = () => ({ type: VALIDATOR_TYPE_INTEGER });
 export const validate = (value, validators) => {
   let isValid = true;
   for (const validator of validators) {
+    //validates field Required.
     if (validator.type === VALIDATOR_TYPE_REQUIRE) {
       isValid = isValid && value.trim().length > 0;
     }
+    //validates Integer value.
     if (validator.type === VALIDATOR_TYPE_INTEGER) {
       value = parseInt(value.trim());
       isValid = isValid && Number.isInteger(value) && value > 0;
     }
+    //validates Cryto wallet Address.
     if (validator.type === VALIDATOR_TYPE_CRYPTO) {
       isValid = isValid && Web3.utils.isAddress(value);
     }
+    //validates Min Length of input.
     if (validator.type === VALIDATOR_TYPE_MINLENGTH) {
       isValid = isValid && value.trim().length >= validator.val;
     }
+    //validaates Max length of input.
     if (validator.type === VALIDATOR_TYPE_MAXLENGTH) {
       isValid = isValid && value.trim().length <= validator.val;
     }
+    //validates minimum value
     if (validator.type === VALIDATOR_TYPE_MIN) {
       isValid = isValid && +value >= validator.val;
     }
+    //validates maximum value
     if (validator.type === VALIDATOR_TYPE_MAX) {
       isValid = isValid && +value <= validator.val;
     }
+    //validates Email.
     if (validator.type === VALIDATOR_TYPE_EMAIL) {
       isValid = isValid && /^\S+@\S+\.\S+$/.test(value);
     }
