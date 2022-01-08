@@ -25,6 +25,9 @@ The listed items can also be deleted by the Seller.\
 The users can buy the products using Cryptocurrency(Ethereum).\
 The site is fully responsive on a large spectrum of screen sizes.
 
+## A glimpse of our site:
+<img src='frontend/public/Ethshop.png'>
+
 ## Tech Stack
 1. HTML 
 2. CSS
@@ -36,3 +39,4 @@ The site is fully responsive on a large spectrum of screen sizes.
 
 ## Link to the site:
 ### [Ethshop](https://ethshop.web.app/)
+
