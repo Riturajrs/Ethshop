@@ -27,6 +27,7 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.4",
     "truffle": "^5.4.23",
+    "use-wallet": "^0.13.4",
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.2",
     "web3": "^1.6.1"

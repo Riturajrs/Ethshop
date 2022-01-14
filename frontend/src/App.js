@@ -1,4 +1,4 @@
-import React, { StrictMode, Suspense } from 'react'
+import React, { StrictMode, Suspense,useEffect } from 'react'
 import './App.css'
 import Navbar from './Navigation/navbar'
 import AllItems from './Item/allItems'

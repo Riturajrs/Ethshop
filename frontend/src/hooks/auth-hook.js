@@ -1,61 +1,73 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback } from 'react'
+import { useWallet } from 'use-wallet'
 
 export const useAuth = () => {
+  const wallet = useWallet()
   const [userId, setUserId] = useState(
-    JSON.parse(localStorage.getItem("userData"))
-      ? JSON.parse(localStorage.getItem("userData")).userId
+    JSON.parse(localStorage.getItem('userData'))
+      ? JSON.parse(localStorage.getItem('userData')).userId
       : null
-  );
-  const [isLoggedIn, setIsLoggedIn] = useState(userId ? true : false);
+  )
+  const [isLoggedIn, setIsLoggedIn] = useState(userId ? true : false)
   const [wishlist, setWishlist] = useState(
-    JSON.parse(localStorage.getItem("userData"))
-      ? JSON.parse(localStorage.getItem("userData")).wishlist
+    JSON.parse(localStorage.getItem('userData'))
+      ? JSON.parse(localStorage.getItem('userData')).wishlist
       : []
-  );
+  )
   const [item, SetItem] = useState(
-    JSON.parse(localStorage.getItem("userData"))
-      ? JSON.parse(localStorage.getItem("userData")).item
+    JSON.parse(localStorage.getItem('userData'))
+      ? JSON.parse(localStorage.getItem('userData')).item
       : []
-  );
+  )
   const login = useCallback(({ uid, item, wishlist }) => {
-    setIsLoggedIn(true);
-    setUserId(uid);
-    SetItem(item);
-    setWishlist(wishlist);
+    {wallet.status !== 'connected' && wallet.connect()}
+    setIsLoggedIn(true)
+    setUserId(uid)
+    SetItem(item)
+    setWishlist(wishlist)
     localStorage.setItem(
-      "userData",
+      'userData',
       JSON.stringify({
         userId: uid,
         item: item,
-        wishlist: wishlist,
+        wishlist: wishlist
       })
-    );
-  }, []);
+    )
+  }, [])
   const setitem = useCallback(
-    (items) => {
+    items => {
       localStorage.setItem(
-        "userData",
+        'userData',
         JSON.stringify({
-          item: items,
+          item: items
         })
-      );
-      SetItem(items);
+      )
+      SetItem(items)
     },
     [login]
-  );
-  const SetWishlist = useCallback((wishlist) => {
-    setWishlist(wishlist);
+  )
+  const SetWishlist = useCallback(wishlist => {
+    setWishlist(wishlist)
     localStorage.setItem(
-      "userData",
+      'userData',
       JSON.stringify({
-        wishlist: wishlist,
+        wishlist: wishlist
       })
-    );
-  });
+    )
+  })
   const logout = useCallback(() => {
-    setIsLoggedIn(false);
-    setUserId(null);
-    localStorage.removeItem("userData");
-  }, []);
-  return { wishlist, isLoggedIn, item, SetWishlist , setitem, login, logout, userId };
-};
+    setIsLoggedIn(false)
+    setUserId(null)
+    localStorage.removeItem('userData')
+  }, [])
+  return {
+    wishlist,
+    isLoggedIn,
+    item,
+    SetWishlist,
+    setitem,
+    login,
+    logout,
+    userId
+  }
+}
