@@ -9,7 +9,7 @@ const userLogin = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
-      new HttpError("Invalid inputs passed, please check your data.", 422)
+      new HttpError("Invalid inputs passed, please check your data.", 422),
     );
   }
   const { email, password } = req.body;
@@ -22,7 +22,7 @@ const userLogin = async (req, res, next) => {
   if (!existingUser) {
     const error = new HttpError(
       "Invalid credentials, could not log you in.",
-      403
+      403,
     );
     return next(error);
   }
@@ -32,13 +32,13 @@ const userLogin = async (req, res, next) => {
     isValidPassword = await bcrypt.compare(password, existingUser.password);
   } catch (err) {
     next(
-      new HttpError("Could not log you in,please check and try again ", 500)
+      new HttpError("Could not log you in,please check and try again ", 500),
     );
   }
   if (!isValidPassword) {
     const error = new HttpError(
       "Invalid credentials, could not log you in.",
-      403
+      403,
     );
     return next(error);
   }
@@ -55,7 +55,7 @@ const userSignup = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
-      new HttpError("Invalid inputs passed, please check your data.", 422)
+      new HttpError("Invalid inputs passed, please check your data.", 422),
     );
   }
   const { name, email, password } = req.body;
@@ -66,7 +66,7 @@ const userSignup = async (req, res, next) => {
   } catch (err) {
     const error = new HttpError(
       "Signing up failed, please try again later.",
-      500
+      500,
     );
     return next(error);
   }
@@ -74,7 +74,7 @@ const userSignup = async (req, res, next) => {
   if (existingUser) {
     const error = new HttpError(
       "User exists already, please login instead.",
-      422
+      422,
     );
     return next(error);
   }
@@ -97,7 +97,7 @@ const userSignup = async (req, res, next) => {
   } catch (err) {
     const error = new HttpError(
       "Signing up failed, please try again later.",
-      500
+      500,
     );
     return next(error);
   }
@@ -113,7 +113,7 @@ const getUserItems = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
-      new HttpError("Invalid inputs passed, please check your data.", 422)
+      new HttpError("Invalid inputs passed, please check your data.", 422),
     );
   }
   const { username } = req.body;
@@ -133,10 +133,10 @@ const addwishlist = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
-      new HttpError("Invalid inputs passed, please check your data.", 422)
+      new HttpError("Invalid inputs passed, please check your data.", 422),
     );
   }
-  const { wishlistid,creator } = req.body;
+  const { wishlistid, creator } = req.body;
   let existingUser;
   try {
     existingUser = await User.findById(creator);
@@ -161,10 +161,10 @@ const removewishlist = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
-      new HttpError("Invalid inputs passed, please check your data.", 422)
+      new HttpError("Invalid inputs passed, please check your data.", 422),
     );
   }
-  const { wishlistid,creator } = req.body;
+  const { wishlistid, creator } = req.body;
   let existingUser;
   try {
     existingUser = await User.findById(creator);
@@ -178,7 +178,7 @@ const removewishlist = async (req, res, next) => {
     await existingUser.save();
   } catch (err) {
     return next(
-      new HttpError("Item could not be removed from wishlist!!", 500)
+      new HttpError("Item could not be removed from wishlist!!", 500),
     );
   }
   res.status(200).json({
@@ -191,10 +191,10 @@ const getwishlist = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
-      new HttpError("Invalid inputs passed, please check your data.", 422)
+      new HttpError("Invalid inputs passed, please check your data.", 422),
     );
   }
-  const {creator} = req.body;
+  const { creator } = req.body;
   let existingUser;
   try {
     existingUser = await User.findById(creator);
@@ -210,25 +210,25 @@ const addTransaction = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
-      new HttpError("Invalid inputs passed, please check your data.", 422)
+      new HttpError("Invalid inputs passed, please check your data.", 422),
     );
   }
-  const { hash,creator } = req.body;
+  const { hash, creator } = req.body;
   const newTransaction = new Transaction({
     hash,
-    userId: creator
+    userId: creator,
   });
   try {
     await newTransaction.save();
   } catch (err) {
     const error = new HttpError(
       "Saving transaction, please try again later.",
-      500
+      500,
     );
     return next(error);
   }
   res.status(200).json({
-    "Message":"Success"
+    Message: "Success",
   });
 };
 exports.getUserItems = getUserItems;

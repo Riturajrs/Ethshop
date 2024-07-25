@@ -16,16 +16,16 @@ router.post(
     check("creator").not().isEmpty(),
     check("Metamask_add").not().isEmpty(),
   ],
-  itemControllers.createItem
+  itemControllers.createItem,
 );
 // For deleting item
-router.delete("/item",itemControllers.deleteItem);
+router.delete("/item", itemControllers.deleteItem);
 // Gets items listed by a particular user
-router.post("/items",itemControllers.userItems);
+router.post("/items", itemControllers.userItems);
 // Gets item by id
-router.get("/item/:id",itemControllers.itemById);
+router.get("/item/:id", itemControllers.itemById);
 // Gets all items
-router.get("/all",itemControllers.getItems);
+router.get("/all", itemControllers.getItems);
 // Gets image bt filename
 router.get("/image/:filename", itemControllers.getImage);
 //Deletes image by file id

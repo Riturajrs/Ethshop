@@ -9,7 +9,7 @@ const router = express.Router();
 router.post(
   "/login",
   [check("email").not().isEmpty(), check("password").not().isEmpty()],
-  UserController.userLogin
+  UserController.userLogin,
 );
 // For signup of user
 router.post(
@@ -19,34 +19,28 @@ router.post(
     check("email").isEmail(),
     check("password").isLength({ min: 6 }),
   ],
-  UserController.userSignup
+  UserController.userSignup,
 );
 // Gets user item by id
 router.post(
   "/userItem",
   [check("email").not().isEmpty()],
-  UserController.getUserItems
+  UserController.getUserItems,
 );
 // Adds to wishlist of user
 router.post(
   "/wishlist",
   [check("wishlistid").not().isEmpty()],
-  UserController.addwishlist
+  UserController.addwishlist,
 );
 // Removes from wishlist of user
 router.patch(
   "/wishlist",
   [check("wishlistid").not().isEmpty()],
-  UserController.removewishlist
+  UserController.removewishlist,
 );
 // Gets wishlist of user
-router.get(
-  "/wishlist",
-  UserController.getwishlist
-);
+router.get("/wishlist", UserController.getwishlist);
 // Registers transaction of user
-router.post(
-  "/transaction",
-  UserController.addTransaction
-);
+router.post("/transaction", UserController.addTransaction);
 module.exports = router;
