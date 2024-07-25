@@ -3,6 +3,7 @@ const HttpError = require("../models/http-error");
 const User = require("../models/users");
 const Transaction = require("../models/transactions");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 // User login logic
 const userLogin = async (req, res, next) => {
@@ -42,6 +43,16 @@ const userLogin = async (req, res, next) => {
     );
     return next(error);
   }
+
+  const token = jwt.sign(
+    { userId: existingUser._id },
+    process.env.JWT_SECRET_KEY,
+    {
+      expiresIn: "1h",
+    },
+  );
+
+  res.cookie("user_id", token, { signed: true, maxAge: 3600 });
   res.status(200).json({
     userId: existingUser.id,
     email: existingUser.email,

@@ -5,12 +5,16 @@ const HttpError = require("./models/http-error");
 const itemRoutes = require("./Routes/item-routes");
 const userRoutes = require("./Routes/users-routes");
 const CORS = require("cors");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
 app.use(bodyParser.json());
 
 app.use(CORS());
+
+app.use(cookieParser(process.env.COOKIE_SECRET));
+
 // For item data handling
 app.use("/api/items", itemRoutes);
 // For user data handling
