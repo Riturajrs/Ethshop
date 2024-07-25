@@ -1,0 +1,4 @@
+backend/.gitignore
+backend/nodemon.json
+backend/package-lock.json
+frontend/package-lock.json
