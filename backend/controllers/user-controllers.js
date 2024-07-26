@@ -52,7 +52,7 @@ const userLogin = async (req, res, next) => {
     },
   );
 
-  res.cookie("user_id", token, { signed: true, maxAge: 3600 });
+  res.cookie("user_id", token, { signed: false, maxAge: 3600000 });
   res.status(200).json({
     userId: existingUser.id,
     email: existingUser.email,
