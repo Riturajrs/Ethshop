@@ -4,6 +4,7 @@ const User = require("../models/users");
 const Transaction = require("../models/transactions");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { setSession } = require("../middleware/sessions");
 
 // User login logic
 const userLogin = async (req, res, next) => {
@@ -44,17 +45,26 @@ const userLogin = async (req, res, next) => {
     return next(error);
   }
 
+  let sessionId;
+
+  try{
+    sessionId = setSession(existingUser._id)
+  }
+  catch(error){
+    const httpError = new HttpError(error,500);
+    return next(httpError);
+  }
+
   const token = jwt.sign(
-    { userId: existingUser._id },
+    { sessionId: sessionId },
     process.env.JWT_SECRET_KEY,
     {
       expiresIn: "1h",
     },
   );
 
-  res.cookie("user_id", token, { signed: false, maxAge: 3600000 });
+  res.cookie("session_id", token, { signed: false, maxAge: 3600000 });
   res.status(200).json({
-    userId: existingUser.id,
     email: existingUser.email,
     wishlist: existingUser.wishlist,
     items: existingUser.items,
@@ -112,6 +122,25 @@ const userSignup = async (req, res, next) => {
     );
     return next(error);
   }
+
+  let sessionId;
+  try{
+    sessionId = setSession(createdUser.id)
+  }
+  catch(error){
+    const httpError = new HttpError(error,500);
+    return next(httpError);
+  }
+
+  const token = jwt.sign(
+    { sessionId: sessionId },
+    process.env.JWT_SECRET_KEY,
+    {
+      expiresIn: "1h",
+    },
+  );
+
+  res.cookie("session_id", token, { signed: false, maxAge: 3600000 });
   res.status(201).json({
     userId: createdUser.id,
     email: createdUser.email,

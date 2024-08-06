@@ -51,8 +51,9 @@ const setSession = async (userId) => {
       userId: userId,
       csrfToken: csrfToken,
     });
+    return sessionId;
   } catch (error) {
-    console.log("An error occurred while setting session: ", error);
+    throw new Error("An error occurred while setting session: ", error);
   } finally {
     await redisClient.quit();
   }
